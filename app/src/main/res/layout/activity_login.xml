@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.LoginActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/title_card"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="25dp"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Menu Planner"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textSize="40sp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/login_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_card"
+        android:layout_margin="25dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/input_login_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autofillHints="username"
+                android:gravity="center"
+                android:hint="username"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/input_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autofillHints="password"
+                android:gravity="center"
+                android:inputType="textPassword"
+                android:hint="password" />
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="login" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
