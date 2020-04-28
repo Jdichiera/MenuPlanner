@@ -1,4 +1,4 @@
-package com.example.menutracker;
+package com.example.menuplanner;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.menutracker", appContext.getPackageName());
+        assertEquals("com.example.menuplanner", appContext.getPackageName());
     }
 }

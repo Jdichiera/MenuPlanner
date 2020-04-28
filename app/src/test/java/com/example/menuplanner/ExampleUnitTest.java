@@ -1,4 +1,4 @@
-package com.example.menutracker;
+package com.example.menuplanner;
 
 import org.junit.Test;
 
