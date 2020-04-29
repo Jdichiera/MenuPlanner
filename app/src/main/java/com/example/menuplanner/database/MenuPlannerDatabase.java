@@ -7,15 +7,18 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.menuplanner.dao.DayDao;
+import com.example.menuplanner.dao.UserDao;
 import com.example.menuplanner.entity.Day;
+import com.example.menuplanner.entity.User;
 
 @Database(
-        entities = {Day.class},
+        entities = {Day.class, User.class},
         version = 1,
         exportSchema = false)
 public abstract class MenuPlannerDatabase extends RoomDatabase {
     private static MenuPlannerDatabase instance;
     public abstract DayDao dayDao();
+    public abstract UserDao userDao();
 
     public static synchronized MenuPlannerDatabase getInstance(Context context) {
         if (instance == null) {
