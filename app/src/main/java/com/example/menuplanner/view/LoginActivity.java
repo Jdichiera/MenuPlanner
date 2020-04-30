@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import com.example.menuplanner.entity.Day;
 import com.example.menuplanner.viewmodel.DayViewModel;
 
 public class LoginActivity extends AppCompatActivity {
+    private final String TEST_USER = "1";
+    private final String TEST_PASS = "1";
     EditText username;
     EditText password;
     SQLiteDatabase database;
@@ -75,12 +78,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login() {
         if (isValidCredential()) {
-            Toast.makeText(this,
-                    "Login yeah",
-                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, DayListActivity.class);
+            startActivity(intent);
         } else {
             Toast.makeText(this,
-                    "Login naah",
+                    "Please check your credentials and try logging in again.",
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -115,7 +117,8 @@ public class LoginActivity extends AppCompatActivity {
         database.execSQL("CREATE TABLE IF NOT EXISTS " +
                 "users_table(id INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, userPassword TEXT)");
         database.execSQL("INSERT OR REPLACE INTO " +
-                "'users_table' (id, userName, userPassword) VALUES (1, 'TestUser', '123')");
+                "'users_table' (id, userName, userPassword) " +
+                "VALUES (1, " + TEST_USER + ", " + TEST_PASS + ")");
     }
 
     private void deleteUserData() {
