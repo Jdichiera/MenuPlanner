@@ -8,7 +8,7 @@ public class Day {
     @PrimaryKey(autoGenerate = true)
     private int dayId;
     private String dayTitle;
-    
+
     public Day(String dayTitle) {
         this.dayTitle = dayTitle;
     }

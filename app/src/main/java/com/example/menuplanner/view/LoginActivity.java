@@ -2,6 +2,8 @@ package com.example.menuplanner.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,6 +17,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.menuplanner.R;
+import com.example.menuplanner.dao.DayDao;
+import com.example.menuplanner.entity.Day;
+import com.example.menuplanner.viewmodel.DayViewModel;
 
 public class LoginActivity extends AppCompatActivity {
     EditText username;
@@ -107,9 +112,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void addUserData() {
-        database.execSQL("CREATE TABLE IF NOT EXISTS users_table " +
-                "(id INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, userPassword TEXT)");
-        database.execSQL("INSERT INTO 'users_table' (userName, userPassword) VALUES ('TestUser', '123')");
+        database.execSQL("CREATE TABLE IF NOT EXISTS " +
+                "users_table(id INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, userPassword TEXT)");
+        database.execSQL("INSERT OR REPLACE INTO " +
+                "'users_table' (id, userName, userPassword) VALUES (1, 'TestUser', '123')");
     }
 
     private void deleteUserData() {
@@ -118,7 +124,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void addDayData() {
-
+        DayViewModel dayviewModel = ViewModelProviders.of(this).get(DayViewModel.class);
+        if (dayviewModel.getDays().getValue() == null) {
+            dayviewModel.insert(new Day("Sunday"));
+            dayviewModel.insert(new Day("Monday"));
+            dayviewModel.insert(new Day("Tuesday"));
+            dayviewModel.insert(new Day("Wednesday"));
+            dayviewModel.insert(new Day("Thursday"));
+            dayviewModel.insert(new Day("Friday"));
+            dayviewModel.insert(new Day("Saturday"));
+        }
     }
 
     private void deleteDayData() {
