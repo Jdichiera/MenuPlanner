@@ -12,7 +12,7 @@ import com.example.menuplanner.entity.Day;
 
 @Database(
         entities = {Day.class},
-        version = 1,
+        version = 2,
         exportSchema = false)
 public abstract class MenuPlannerDatabase extends RoomDatabase {
     private static MenuPlannerDatabase instance;

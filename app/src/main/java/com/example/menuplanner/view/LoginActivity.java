@@ -77,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-        if (isValidCredential()) {
+        if (isValidCredential(database)) {
+            database.close();
             Intent intent = new Intent(LoginActivity.this, DayListActivity.class);
             startActivity(intent);
         } else {
@@ -87,10 +88,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isValidCredential() {
+    private boolean isValidCredential(SQLiteDatabase database) {
         boolean isValid;
-        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(getApplicationContext()
-                .getDatabasePath("menu_planner_database"), null);
         String name = username.getText().toString();
         String pass = password.getText().toString();
         Cursor cursor = database.query("users_table", new String[]{"userName"},
@@ -100,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         isValid = (cursor != null) && (cursor.getCount() == 1);
 
         cursor.close();
+        database.close();
         return isValid;
     }
 
