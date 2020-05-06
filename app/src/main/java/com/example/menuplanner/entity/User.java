@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey;
 
 import com.example.menuplanner.application.MenuPlanner;
 
-@Entity(tableName = MenuPlanner.USER_TABLE)
+@Entity(tableName = MenuPlanner.USERS_TABLE)
 public class User {
     @PrimaryKey(autoGenerate = true)
     private int userId;

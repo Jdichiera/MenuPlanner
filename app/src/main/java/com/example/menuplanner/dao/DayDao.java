@@ -7,6 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.entity.Day;
 
 import java.util.List;
@@ -22,15 +23,15 @@ public interface DayDao {
     @Delete
     void delete(Day day);
 
-    @Query("DELETE FROM days_table")
+    @Query("DELETE FROM " + MenuPlanner.DAYS_TABLE)
     void deleteAllDays();
 
-    @Query("SELECT * FROM days_table")
+    @Query("SELECT * FROM " + MenuPlanner.DAYS_TABLE)
     LiveData<List<Day>> getAllDays();
 
-    @Query("SELECT * FROM days_table WHERE dayId = :dayId")
+    @Query("SELECT * FROM " + MenuPlanner.DAYS_TABLE + " WHERE dayId = :dayId")
     LiveData<Day> getDay(int dayId);
 
-    @Query("SELECT COUNT(*) FROM days_table")
+    @Query("SELECT COUNT(*) FROM " + MenuPlanner.DAYS_TABLE)
     LiveData<Integer> getDayCount();
 }

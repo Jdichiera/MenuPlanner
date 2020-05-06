@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                 .getDatabasePath(MenuPlanner.DATABASE_NAME), null);
         String name = username.getText().toString();
         String pass = password.getText().toString();
-        Cursor cursor = database.query(MenuPlanner.USER_TABLE, new String[]{"userName"},
+        Cursor cursor = database.query(MenuPlanner.USERS_TABLE, new String[]{"userName"},
                 "userName = ? AND userPassword = ?", new String[]{name, pass},
                 null, null, null, null);
 

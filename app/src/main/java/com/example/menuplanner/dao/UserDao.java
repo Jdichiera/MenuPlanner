@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.entity.User;
 
 @Dao
@@ -20,6 +21,6 @@ public interface UserDao {
     @Delete
     void deleteUser(User user);
 
-    @Query("DELETE FROM users_table")
+    @Query("DELETE FROM " + MenuPlanner.USERS_TABLE)
     void deleteAllUsers();
 }
