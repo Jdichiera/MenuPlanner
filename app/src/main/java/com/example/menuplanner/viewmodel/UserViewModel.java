@@ -23,4 +23,13 @@ public class UserViewModel extends AndroidViewModel {
     public void deleteAllUsers() {
         repository.deleteAllUsers();
     }
+
+    public boolean validateLogin(String username, String password) {
+        int userCount = repository.validateLogin(username, password);
+        return userCount == 1 ? true : false;
+    }
+
+//    public void deleteSequence() {
+//        repository.deleteSequence();
+//    }
 }

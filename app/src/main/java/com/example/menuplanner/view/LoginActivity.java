@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.application.MenuPlanner;
+import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Day;
 import com.example.menuplanner.entity.User;
 import com.example.menuplanner.utility.DatabaseHelper;
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MenuPlannerDatabase db = MenuPlannerDatabase.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -72,10 +74,10 @@ public class LoginActivity extends AppCompatActivity {
             userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         }
 
-        String userName = username.getText().toString();
-        String userPass = password.getText().toString();
+        String name = username.getText().toString();
+        String pass = password.getText().toString();
 
-        if (DatabaseHelper.getInstance(this).validateLogin(userName, userPass)) {
+        if (userViewModel.validateLogin(name, pass)) {
             Intent intent = new Intent(LoginActivity.this, DayListActivity.class);
             startActivity(intent);
         } else {
@@ -102,7 +104,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void deleteSequence() {
-        DatabaseHelper.getInstance(this).deleteSequence();
+        if (userViewModel == null) {
+            userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        }
+
+        if (userViewModel.validateLogin(MenuPlanner.TEST_USER_NAME, MenuPlanner.TEST_USER_PASSWORD)) {
+            DatabaseHelper.getInstance(this).deleteSequence();
+        }
     }
 
     private void deleteUserData() {

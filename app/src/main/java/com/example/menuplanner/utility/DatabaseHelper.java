@@ -21,24 +21,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return instance;
     }
 
-    public boolean validateLogin(String username, String password) {
-        boolean isValid;
-        SQLiteDatabase database = getReadableDatabase();
-        Cursor cursor = database.query(MenuPlanner.USERS_TABLE, new String[]{"userName"},
-                "userName = ? AND userPassword = ?", new String[]{username, password},
-                null, null, null, null);
+//    public boolean validateLogin(String username, String password) {
+//        boolean isValid;
+//        SQLiteDatabase database = getReadableDatabase();
+//        Cursor cursor = database.query(MenuPlanner.USERS_TABLE, new String[]{"userName"},
+//                "userName = ? AND userPassword = ?", new String[]{username, password},
+//                null, null, null, null);
+//
+//        isValid = (cursor != null) && (cursor.getCount() == 1);
+//        if (cursor != null) {
+//            cursor.close();
+//        }
 
-        isValid = (cursor != null) && (cursor.getCount() == 1);
-        if (cursor != null) {
-            cursor.close();
-        }
-
-        return isValid;
-    }
+//        return isValid;
+//    }
 
     public void deleteSequence() {
+//        boolean tableExists = false;
         SQLiteDatabase database = getWritableDatabase();
-        database.execSQL("delete from sqlite_sequence");
+//        database.
+//        database.delete("sqlite_sequence", null, null);
+//        String sql = "SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence'";
+//
+//        Cursor mCursor = database.rawQuery(sql, null);
+//        if (mCursor.getCount() > 0) {
+//            tableExists = true;
+//        }
+//
+//        mCursor.close();
+//
+//        if (tableExists) {
+            database.execSQL("DELETE FROM sqlite_sequence");
+//        }
     }
 
     @Override

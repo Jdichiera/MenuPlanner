@@ -29,7 +29,7 @@ public class DayRepository {
         new UpdateAsyncTask(dayDao).execute(day);
     }
 
-    public void deleteAlLDays() {
+    public void deleteAllDays() {
         new DeleteAllDaysAsyncTask(dayDao).execute();
     }
 

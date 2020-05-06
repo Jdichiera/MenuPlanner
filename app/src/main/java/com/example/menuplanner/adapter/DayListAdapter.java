@@ -37,7 +37,6 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.DayListH
         } else {
             holder.hasMenuImage.setVisibility(View.INVISIBLE);
         }
-
     }
 
     @Override

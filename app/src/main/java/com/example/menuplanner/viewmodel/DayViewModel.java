@@ -22,7 +22,7 @@ public class DayViewModel extends AndroidViewModel {
     }
 
     public void deleteAllDays() {
-        repository.deleteAlLDays();
+        repository.deleteAllDays();
     }
 
     public LiveData<Integer> getDayCount() {

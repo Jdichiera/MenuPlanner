@@ -23,6 +23,14 @@ public class UserRepository {
         new DeleteAllUsersAsyncTask(userDao).execute();
     }
 
+//    public void deleteSequence() {
+//        this.userDao.deleteSequence();
+//    }
+
+    public int validateLogin(String username, String password) {
+        return userDao.validateLogin(username, password);
+    }
+
     private static class InsertUserAsyncTask extends android.os.AsyncTask<User, Void, Void> {
         private UserDao userDao;
 
