@@ -1,6 +1,7 @@
 package com.example.menuplanner.entity;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import com.example.menuplanner.application.MenuPlanner;
@@ -10,6 +11,15 @@ public class Day {
     @PrimaryKey(autoGenerate = true)
     private int dayId;
     private String dayTitle;
+    private int menuId;
+
+    public int getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(int menuId) {
+        this.menuId = menuId;
+    }
 
     public Day(String dayTitle) {
         this.dayTitle = dayTitle;

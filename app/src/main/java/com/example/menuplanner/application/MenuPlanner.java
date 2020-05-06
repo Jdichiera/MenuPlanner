@@ -3,7 +3,7 @@ package com.example.menuplanner.application;
 import android.app.Application;
 
 public class MenuPlanner extends Application {
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "menu_planner_database";
     public static final String USERS_TABLE = "users_table";
     public static final String DAYS_TABLE = "days_table";

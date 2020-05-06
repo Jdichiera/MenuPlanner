@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +18,7 @@ import com.example.menuplanner.R;
 import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.entity.Day;
 import com.example.menuplanner.entity.User;
+import com.example.menuplanner.utility.DatabaseHelper;
 import com.example.menuplanner.viewmodel.DayViewModel;
 import com.example.menuplanner.viewmodel.UserViewModel;
 
@@ -73,7 +72,10 @@ public class LoginActivity extends AppCompatActivity {
             userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         }
 
-        if (isValidCredential()) {
+        String userName = username.getText().toString();
+        String userPass = password.getText().toString();
+
+        if (DatabaseHelper.getInstance(this).validateLogin(userName, userPass)) {
             Intent intent = new Intent(LoginActivity.this, DayListActivity.class);
             startActivity(intent);
         } else {
@@ -81,24 +83,6 @@ public class LoginActivity extends AppCompatActivity {
                     "Please check your credentials and try logging in again.",
                     Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private boolean isValidCredential() {
-        boolean isValid;
-        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(getApplicationContext()
-                .getDatabasePath(MenuPlanner.DATABASE_NAME), null);
-        String name = username.getText().toString();
-        String pass = password.getText().toString();
-        Cursor cursor = database.query(MenuPlanner.USERS_TABLE, new String[]{"userName"},
-                "userName = ? AND userPassword = ?", new String[]{name, pass},
-                null, null, null, null);
-
-        isValid = (cursor != null) && (cursor.getCount() == 1);
-        if (cursor != null) {
-            cursor.close();
-        }
-        database.close();
-        return isValid;
     }
 
     private void initializeDatabase() {
@@ -118,10 +102,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void deleteSequence() {
-        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(getApplicationContext()
-                .getDatabasePath(MenuPlanner.DATABASE_NAME), null);
-        database.execSQL("delete from sqlite_sequence");
-        database.close();
+        DatabaseHelper.getInstance(this).deleteSequence();
     }
 
     private void deleteUserData() {
