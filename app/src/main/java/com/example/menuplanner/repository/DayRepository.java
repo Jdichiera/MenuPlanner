@@ -29,6 +29,14 @@ public class DayRepository {
         new UpdateAsyncTask(dayDao).execute(day);
     }
 
+    public void deleteAlLDays() {
+        new DeleteAllDaysAsyncTask(dayDao).execute();
+    }
+
+    public LiveData<Integer> getDayCount() {
+        return dayDao.getDayCount();
+    }
+
     public LiveData<List<Day>> getDays() {
         return this.days;
     }
@@ -47,6 +55,20 @@ public class DayRepository {
         }
     }
 
+    private static class DeleteAllDaysAsyncTask extends AsyncTask<Void, Void, Void> {
+        private DayDao dayDao;
+
+        private DeleteAllDaysAsyncTask(DayDao dayDao) {
+            this.dayDao = dayDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            dayDao.deleteAllDays();
+            return null;
+        }
+    }
+
     private static class UpdateAsyncTask extends AsyncTask<Day, Void, Void> {
         private DayDao dayDao;
 
@@ -60,6 +82,4 @@ public class DayRepository {
             return null;
         }
     }
-
-
 }

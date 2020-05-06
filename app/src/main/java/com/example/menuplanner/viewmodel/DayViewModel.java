@@ -21,6 +21,14 @@ public class DayViewModel extends AndroidViewModel {
         days = repository.getDays();
     }
 
+    public void deleteAllDays() {
+        repository.deleteAlLDays();
+    }
+
+    public LiveData<Integer> getDayCount() {
+        return repository.getDayCount();
+    }
+
     public void insert(Day day) {
         repository.insert(day);
     }

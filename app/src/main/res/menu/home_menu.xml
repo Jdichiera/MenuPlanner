@@ -2,12 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_add_sample_data"
-        android:title="Add Sample Data"
+        android:id="@+id/menu_initialize_database"
+        android:title="Initialize Database"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/menu_delete_all_data"
-        android:title="Delete All Data"
-        app:showAsAction="never"/>
 </menu>

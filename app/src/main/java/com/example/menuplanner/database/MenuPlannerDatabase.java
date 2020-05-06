@@ -5,35 +5,30 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.dao.DayDao;
+import com.example.menuplanner.dao.UserDao;
 import com.example.menuplanner.entity.Day;
+import com.example.menuplanner.entity.User;
 
 @Database(
-        entities = {Day.class},
-        version = 2,
+        entities = {User.class, Day.class},
+        version = MenuPlanner.DATABASE_VERSION,
         exportSchema = false)
 public abstract class MenuPlannerDatabase extends RoomDatabase {
     private static MenuPlannerDatabase instance;
     public abstract DayDao dayDao();
+    public abstract UserDao userDao();
 
     public static synchronized MenuPlannerDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    MenuPlannerDatabase.class, "menu_planner_database")
+                    MenuPlannerDatabase.class, MenuPlanner.DATABASE_NAME)
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
                     .build();
         }
 
         return instance;
     }
-
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(SupportSQLiteDatabase db) {
-            super.onCreate(db);
-        }
-    };
 }

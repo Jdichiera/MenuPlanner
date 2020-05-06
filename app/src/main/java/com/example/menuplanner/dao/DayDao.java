@@ -22,9 +22,15 @@ public interface DayDao {
     @Delete
     void delete(Day day);
 
+    @Query("DELETE FROM days_table")
+    void deleteAllDays();
+
     @Query("SELECT * FROM days_table")
     LiveData<List<Day>> getAllDays();
 
     @Query("SELECT * FROM days_table WHERE dayId = :dayId")
     LiveData<Day> getDay(int dayId);
+
+    @Query("SELECT COUNT(*) FROM days_table")
+    LiveData<Integer> getDayCount();
 }

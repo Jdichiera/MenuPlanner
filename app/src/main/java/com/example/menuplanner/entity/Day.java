@@ -3,7 +3,9 @@ package com.example.menuplanner.entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "days_table")
+import com.example.menuplanner.application.MenuPlanner;
+
+@Entity(tableName = MenuPlanner.DAYS_TABLE)
 public class Day {
     @PrimaryKey(autoGenerate = true)
     private int dayId;

@@ -16,10 +16,21 @@
             android:id="@+id/day_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="8dp"
             android:text="Sunday"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/day_has_menu_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_menu"
+            android:paddingRight="8dp"/>
 
     </RelativeLayout>
 

@@ -2,7 +2,6 @@ package com.example.menuplanner.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -18,16 +17,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.menuplanner.R;
-import com.example.menuplanner.dao.DayDao;
+import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.entity.Day;
+import com.example.menuplanner.entity.User;
 import com.example.menuplanner.viewmodel.DayViewModel;
+import com.example.menuplanner.viewmodel.UserViewModel;
 
 public class LoginActivity extends AppCompatActivity {
-    private final String TEST_USER = "1";
-    private final String TEST_PASS = "1";
     EditText username;
     EditText password;
-    SQLiteDatabase database;
+    DayViewModel dayViewModel;
+    UserViewModel userViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,6 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.input_login_username);
         password = findViewById(R.id.input_login_password);
         Button login = findViewById(R.id.button_login);
-        database = SQLiteDatabase.openOrCreateDatabase(getApplicationContext()
-                .getDatabasePath("menu_planner_database"), null);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,17 +56,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_add_sample_data:
+            case R.id.menu_initialize_database:
                 Toast.makeText(this,
-                        "Adding sample data and test user",
+                        "Initializing Database: Deleting existing data. Adding test data.",
                         Toast.LENGTH_SHORT).show();
-                addData();
-                return true;
-            case R.id.menu_delete_all_data:
-                Toast.makeText(this,
-                        "Deleting sample data and test user",
-                        Toast.LENGTH_SHORT).show();
-                deleteData();
+                initializeDatabase();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -77,8 +69,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-        if (isValidCredential(database)) {
-            database.close();
+        if (userViewModel == null) {
+            userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        }
+
+        if (isValidCredential()) {
             Intent intent = new Intent(LoginActivity.this, DayListActivity.class);
             startActivity(intent);
         } else {
@@ -88,19 +83,33 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isValidCredential(SQLiteDatabase database) {
+    private boolean isValidCredential() {
         boolean isValid;
+        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(getApplicationContext()
+                .getDatabasePath(MenuPlanner.DATABASE_NAME), null);
         String name = username.getText().toString();
         String pass = password.getText().toString();
-        Cursor cursor = database.query("users_table", new String[]{"userName"},
+        Cursor cursor = database.query(MenuPlanner.USER_TABLE, new String[]{"userName"},
                 "userName = ? AND userPassword = ?", new String[]{name, pass},
                 null, null, null, null);
 
         isValid = (cursor != null) && (cursor.getCount() == 1);
-
-        cursor.close();
+        if (cursor != null) {
+            cursor.close();
+        }
         database.close();
         return isValid;
+    }
+
+    private void initializeDatabase() {
+        deleteData();
+        addData();
+    }
+
+    private void deleteData() {
+        deleteSequence();
+        deleteUserData();
+        deleteDayData();
     }
 
     private void addData() {
@@ -108,39 +117,45 @@ public class LoginActivity extends AppCompatActivity {
         addDayData();
     }
 
-    private void deleteData() {
-        deleteUserData();
-        deleteDayData();
-    }
-
-    private void addUserData() {
-        database.execSQL("CREATE TABLE IF NOT EXISTS " +
-                "users_table(id INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, userPassword TEXT)");
-        database.execSQL("INSERT OR REPLACE INTO " +
-                "'users_table' (id, userName, userPassword) " +
-                "VALUES (1, " + TEST_USER + ", " + TEST_PASS + ")");
+    private void deleteSequence() {
+        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(getApplicationContext()
+                .getDatabasePath(MenuPlanner.DATABASE_NAME), null);
+        database.execSQL("delete from sqlite_sequence");
+        database.close();
     }
 
     private void deleteUserData() {
-        database.execSQL("DELETE FROM users_table");
-        database.execSQL("DELETE FROM sqlite_sequence where name = 'users_table'");
-    }
-
-    private void addDayData() {
-        DayViewModel dayviewModel = ViewModelProviders.of(this).get(DayViewModel.class);
-        if (dayviewModel.getDays().getValue() == null) {
-            dayviewModel.insert(new Day("Sunday"));
-            dayviewModel.insert(new Day("Monday"));
-            dayviewModel.insert(new Day("Tuesday"));
-            dayviewModel.insert(new Day("Wednesday"));
-            dayviewModel.insert(new Day("Thursday"));
-            dayviewModel.insert(new Day("Friday"));
-            dayviewModel.insert(new Day("Saturday"));
+        if (userViewModel == null) {
+            userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         }
+
+        userViewModel.deleteAllUsers();
     }
 
     private void deleteDayData() {
-        database.execSQL("DELETE FROM days_table");
-        database.execSQL("DELETE FROM sqlite_sequence where name = 'days_table'");
+        if (dayViewModel == null) {
+            dayViewModel = ViewModelProviders.of(this).get(DayViewModel.class);
+        }
+
+        dayViewModel.deleteAllDays();
+    }
+
+    private void addUserData() {
+        if (userViewModel == null) {
+            userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        }
+        User testUser = new User(MenuPlanner.TEST_USER_NAME, MenuPlanner.TEST_USER_PASSWORD);
+        testUser.setUserId(1);
+        userViewModel.insertUser(testUser);
+    }
+
+    private void addDayData() {
+        if (dayViewModel == null) {
+            dayViewModel = ViewModelProviders.of(this).get(DayViewModel.class);
+        }
+
+        for (String day : MenuPlanner.DAYS) {
+            dayViewModel.insert(new Day(day));
+        }
     }
 }
