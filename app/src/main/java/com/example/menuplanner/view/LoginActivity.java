@@ -2,6 +2,7 @@ package com.example.menuplanner.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -18,9 +19,12 @@ import com.example.menuplanner.R;
 import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Day;
+import com.example.menuplanner.entity.MainDish;
 import com.example.menuplanner.entity.User;
 import com.example.menuplanner.utility.DatabaseHelper;
 import com.example.menuplanner.viewmodel.DayViewModel;
+import com.example.menuplanner.viewmodel.MainDishViewModel;
+import com.example.menuplanner.viewmodel.MenuViewModel;
 import com.example.menuplanner.viewmodel.UserViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -28,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText password;
     DayViewModel dayViewModel;
     UserViewModel userViewModel;
+    MenuViewModel menuViewModel;
+    MainDishViewModel mainDishViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 initializeDatabase();
                 return true;
+            case R.id.menu_view_reports:
+                viewReports();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -86,6 +95,10 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
+    
+    private void viewReports() {
+        Toast.makeText(this, "View Reports", Toast.LENGTH_SHORT).show();
+    }
 
     private void initializeDatabase() {
         deleteData();
@@ -96,11 +109,16 @@ public class LoginActivity extends AppCompatActivity {
         deleteSequence();
         deleteUserData();
         deleteDayData();
+        deleteMenuData();
+        deleteMainDishData();
+
     }
 
     private void addData() {
         addUserData();
         addDayData();
+        addMenuData();
+        addMainDishData();
     }
 
     private void deleteSequence() {
@@ -129,6 +147,22 @@ public class LoginActivity extends AppCompatActivity {
         dayViewModel.deleteAllDays();
     }
 
+    private void deleteMenuData() {
+        if (menuViewModel == null) {
+            menuViewModel = ViewModelProviders.of(this).get(MenuViewModel.class);
+        }
+
+        menuViewModel.deleteAllMenus();
+    }
+
+    private void deleteMainDishData() {
+        if (mainDishViewModel == null) {
+            mainDishViewModel = ViewModelProviders.of(this).get(MainDishViewModel.class);
+        }
+
+        mainDishViewModel.deleteAllMainDishes();
+    }
+
     private void addUserData() {
         if (userViewModel == null) {
             userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
@@ -143,8 +177,42 @@ public class LoginActivity extends AppCompatActivity {
             dayViewModel = ViewModelProviders.of(this).get(DayViewModel.class);
         }
 
-        for (String day : MenuPlanner.DAYS) {
-            dayViewModel.insert(new Day(day));
+        dayViewModel.insert(new Day("Sunday", 1));
+        dayViewModel.insert(new Day("Monday", 2));
+        dayViewModel.insert(new Day("Tuesday", 3));
+        dayViewModel.insert(new Day("Wednesday", 4));
+        dayViewModel.insert(new Day("Thursday", 5));
+        dayViewModel.insert(new Day("Friday", 6));
+        dayViewModel.insert(new Day("Saturday", 0));
+
+//        for (String day : MenuPlanner.DAYS) {
+//            dayViewModel.insert(new Day(day));
+//        }
+    }
+
+    private void addMenuData() {
+        if (menuViewModel == null) {
+            menuViewModel = ViewModelProviders.of(this).get(MenuViewModel.class);
         }
+
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(1, 1, 1, 1));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(2, 2, 2, 2));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(3, 3, 3, 3));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(4, 4, 4, 4));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(5, 5, 5, 5));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(6, 6, 6, 6));
+    }
+
+    private void addMainDishData() {
+        if (mainDishViewModel == null) {
+            mainDishViewModel = ViewModelProviders.of(this).get(MainDishViewModel.class);
+        }
+
+        mainDishViewModel.insert(new MainDish("1"));
+        mainDishViewModel.insert(new MainDish("2"));
+        mainDishViewModel.insert(new MainDish("3"));
+        mainDishViewModel.insert(new MainDish("4"));
+        mainDishViewModel.insert(new MainDish("5"));
+        mainDishViewModel.insert(new MainDish("6"));
     }
 }

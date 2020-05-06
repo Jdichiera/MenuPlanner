@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
 import com.example.menuplanner.entity.Menu;
 import com.example.menuplanner.repository.MenuRepository;
 
@@ -14,6 +13,11 @@ public class MenuViewModel extends AndroidViewModel {
     public MenuViewModel(Application application, int menuId) {
         super(application);
         repository = new MenuRepository(application, menuId);
+    }
+
+    public MenuViewModel(Application application) {
+        super(application);
+        repository = new MenuRepository(application);
     }
 
     public void insert(Menu menu) {
@@ -28,7 +32,13 @@ public class MenuViewModel extends AndroidViewModel {
         repository.delete(menu);
     }
 
+    public void deleteAllMenus() { repository.deleteAllMenus();}
+
     public LiveData<Menu> getMenu() {
         return repository.getMenu();
+    }
+
+    public LiveData<Menu> getMenu(int menuId) {
+        return repository.getMenu(menuId);
     }
 }

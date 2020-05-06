@@ -28,8 +28,4 @@ public class UserViewModel extends AndroidViewModel {
         int userCount = repository.validateLogin(username, password);
         return userCount == 1 ? true : false;
     }
-
-//    public void deleteSequence() {
-//        repository.deleteSequence();
-//    }
 }

@@ -1,5 +1,6 @@
 package com.example.menuplanner.entity;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
@@ -26,12 +27,11 @@ public class Menu {
     private int sideDish3Id;
     private int dessertId;
 
-    public Menu(int mainDishId, int sideDish1Id, int sideDish2Id, int sideDish3Id, int dessertId) {
+    public Menu(int mainDishId, int sideDish1Id, int sideDish2Id, int sideDish3Id) {
         this.mainDishId = mainDishId;
         this.sideDish1Id = sideDish1Id;
         this.sideDish2Id = sideDish2Id;
         this.sideDish3Id = sideDish3Id;
-        this.dessertId = dessertId;
     }
 
     public int getDayId() {

@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.menuplanner.dao.MainDishDao;
 import com.example.menuplanner.dao.MenuDao;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Menu;
@@ -12,6 +13,11 @@ import com.example.menuplanner.entity.Menu;
 public class MenuRepository {
     private MenuDao menuDao;
     private LiveData<Menu> menu;
+
+    public MenuRepository(Application application) {
+        MenuPlannerDatabase database = MenuPlannerDatabase.getInstance(application);
+        this.menuDao = database.menuDao();
+    }
 
     public MenuRepository(Application application, int menuId) {
         MenuPlannerDatabase database = MenuPlannerDatabase.getInstance(application);
@@ -33,6 +39,14 @@ public class MenuRepository {
 
     public LiveData<Menu> getMenu() {
         return menu;
+    }
+
+    public LiveData<Menu> getMenu(int menuId) {
+        return menuDao.getMenu(menuId);
+    }
+
+    public void deleteAllMenus() {
+        new MenuRepository.DeleteAllMenusAsyncTask(menuDao).execute();
     }
 
     private static class InsertMenuAsyncTask extends AsyncTask<Menu, Void, Void> {
@@ -73,6 +87,20 @@ public class MenuRepository {
         @Override
         protected Void doInBackground(Menu... menus) {
             menuDao.insert(menus[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllMenusAsyncTask extends AsyncTask<Void, Void, Void> {
+        private MenuDao menuDao;
+
+        private DeleteAllMenusAsyncTask(MenuDao menuDao) {
+            this.menuDao = menuDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            menuDao.deleteAllMenus();
             return null;
         }
     }

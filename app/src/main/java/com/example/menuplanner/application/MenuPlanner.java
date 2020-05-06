@@ -8,6 +8,7 @@ public class MenuPlanner extends Application {
     public static final String USERS_TABLE = "users_table";
     public static final String DAYS_TABLE = "days_table";
     public static final String MENUS_TABLE = "menus_table";
+    public static final String MAINS_TABLE = "mains_table";
     public static final String TEST_USER_NAME = "1";
     public static final String TEST_USER_PASSWORD = "1";
     public static final String[] DAYS = {

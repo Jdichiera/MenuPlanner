@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AbsListView;
 import android.widget.Toast;
@@ -18,6 +19,8 @@ import com.example.menuplanner.viewmodel.DayViewModel;
 import java.util.List;
 
 public class DayListActivity extends AppCompatActivity {
+    public static final String DAY_NAME = "com.example.academictracker.view.DAY_NAME";
+    public static final String MENU_ID = "com.example.academictracker.view.MENU_ID";
     private DayViewModel dayViewModel;
 
     @Override
@@ -48,6 +51,9 @@ public class DayListActivity extends AppCompatActivity {
     }
     
     private void viewDay(Day day) {
-        Toast.makeText(this, "View Day", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(DayListActivity.this, MenuViewActivity.class);
+        intent.putExtra(DAY_NAME, day.getDayTitle());
+        intent.putExtra(MENU_ID, day.getMenuId());
+        startActivity(intent);
     }
 }

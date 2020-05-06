@@ -21,8 +21,9 @@ public class Day {
         this.menuId = menuId;
     }
 
-    public Day(String dayTitle) {
+    public Day(String dayTitle, int menuId) {
         this.dayTitle = dayTitle;
+        this.menuId = menuId;
     }
 
     public int getDayId() {

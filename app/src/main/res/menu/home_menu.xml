@@ -6,4 +6,9 @@
         android:title="Initialize Database"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/menu_view_reports"
+        android:title="View Reports"
+        app:showAsAction="never"/>
+
 </menu>

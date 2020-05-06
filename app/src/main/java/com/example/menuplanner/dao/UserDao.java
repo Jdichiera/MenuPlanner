@@ -26,7 +26,4 @@ public interface UserDao {
 
     @Query("SELECT COUNT(userId) FROM users_table WHERE userName = :username AND userPassword = :password")
     int validateLogin(String username, String password);
-
-//    @Query("DELETE FROM sqlite_sequence")
-//    void deleteSequence();
 }
