@@ -19,9 +19,9 @@ import com.example.menuplanner.viewmodel.DayViewModel;
 import java.util.List;
 
 public class DayListActivity extends AppCompatActivity {
-    public static final String DAY_NAME = "com.example.academictracker.view.DAY_NAME";
-    public static final String MENU_ID = "com.example.academictracker.view.MENU_ID";
-    private DayViewModel dayViewModel;
+    public static final String DAY_NAME = "com.example.menuplanner.DAY_NAME";
+    public static final String DAY_ID = "com.example.menuplanner.DAY_ID";
+    public static final String MENU_ID = "com.example.menuplanner.MENU_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class DayListActivity extends AppCompatActivity {
             }
         });
 
-        dayViewModel = ViewModelProviders.of(this).get(DayViewModel.class);
+        DayViewModel dayViewModel = ViewModelProviders.of(this).get(DayViewModel.class);
         dayViewModel.getDays().observe(this, new Observer<List<Day>>() {
             @Override
             public void onChanged(List<Day> days) {
@@ -54,6 +54,7 @@ public class DayListActivity extends AppCompatActivity {
         Intent intent = new Intent(DayListActivity.this, MenuViewActivity.class);
         intent.putExtra(DAY_NAME, day.getDayTitle());
         intent.putExtra(MENU_ID, day.getMenuId());
+        intent.putExtra(DAY_ID, day.getDayId());
         startActivity(intent);
     }
 }

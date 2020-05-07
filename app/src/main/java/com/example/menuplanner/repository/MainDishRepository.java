@@ -11,6 +11,9 @@ import com.example.menuplanner.dao.MainDishDao;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.MainDish;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainDishRepository {
     private MainDishDao mainDishDao;
 
@@ -33,6 +36,10 @@ public class MainDishRepository {
 
     public LiveData<MainDish> getMainDish(int mainDishId) {
         return mainDishDao.getMainDish(mainDishId);
+    }
+
+    public LiveData<List<MainDish>> getAllMainDishes() {
+        return mainDishDao.getAllMainDishes();
     }
 
     public void deleteAllMainDishes() {

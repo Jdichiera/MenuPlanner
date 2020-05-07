@@ -27,6 +27,7 @@ public class Menu {
     private int sideDish3Id;
     private int dessertId;
 
+    public Menu() {}
     public Menu(int mainDishId, int sideDish1Id, int sideDish2Id, int sideDish3Id) {
         this.mainDishId = mainDishId;
         this.sideDish1Id = sideDish1Id;

@@ -11,6 +11,10 @@ public class MainDish {
     private int mainDishId;
     private String mainDishTitle;
 
+    public MainDish() {
+
+    }
+
     public MainDish(String mainDishTitle) {
         this.mainDishTitle = mainDishTitle;
     }

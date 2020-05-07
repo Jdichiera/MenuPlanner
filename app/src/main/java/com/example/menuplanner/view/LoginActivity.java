@@ -208,11 +208,11 @@ public class LoginActivity extends AppCompatActivity {
             mainDishViewModel = ViewModelProviders.of(this).get(MainDishViewModel.class);
         }
 
-        mainDishViewModel.insert(new MainDish("1"));
-        mainDishViewModel.insert(new MainDish("2"));
-        mainDishViewModel.insert(new MainDish("3"));
-        mainDishViewModel.insert(new MainDish("4"));
-        mainDishViewModel.insert(new MainDish("5"));
-        mainDishViewModel.insert(new MainDish("6"));
+        mainDishViewModel.insert(new MainDish("Spagetti"));
+        mainDishViewModel.insert(new MainDish("Some Sandwiches"));
+        mainDishViewModel.insert(new MainDish("Ham and Potatoes"));
+        mainDishViewModel.insert(new MainDish("Icecream and bread that is weird"));
+        mainDishViewModel.insert(new MainDish("Yams with Spice"));
+        mainDishViewModel.insert(new MainDish("Time for some meatballs"));
     }
 }

@@ -18,6 +18,7 @@
 
         <!--        Main Dish-->
         <RelativeLayout
+            android:id="@+id/card_main_dish"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -66,6 +67,7 @@
 
         <!--        Side Dish 1 -->
         <RelativeLayout
+            android:id="@+id/card_side_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -113,6 +115,7 @@
         app:cardCornerRadius="5dp">
 
         <RelativeLayout
+            android:id="@+id/card_side_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -160,6 +163,7 @@
         app:cardCornerRadius="5dp">
 
         <RelativeLayout
+            android:id="@+id/card_side_3"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -208,13 +212,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_arrow_upward"
-                android:layout_marginStart="70dp"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/arrow_next_day"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:src="@drawable/ic_arrow_upward"-->
+<!--                android:layout_marginStart="70dp"/>-->
 
             <TextView
                 android:id="@+id/title_day"
@@ -226,13 +231,14 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_arrow_downward"
-                android:layout_marginEnd="70dp"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/arrow_previous_day"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:src="@drawable/ic_arrow_downward"-->
+<!--                android:layout_marginEnd="70dp"/>-->
 
         </RelativeLayout>
 

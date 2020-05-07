@@ -10,6 +10,9 @@ import androidx.room.Update;
 import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.entity.MainDish;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Dao
 public interface MainDishDao {
     @Insert
@@ -26,4 +29,7 @@ public interface MainDishDao {
 
     @Query("SELECT * FROM " + MenuPlanner.MAINS_TABLE + " WHERE mainDishId = :mainDishId")
     LiveData<MainDish> getMainDish(int mainDishId);
+
+    @Query("SELECT * FROM " + MenuPlanner.MAINS_TABLE)
+    LiveData<List<MainDish>> getAllMainDishes();
 }
