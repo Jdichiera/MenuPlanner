@@ -6,13 +6,18 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.entity.MainDish;
+import com.example.menuplanner.viewmodel.MainDishViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,20 +31,35 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
     public interface OnItemClickListener {
         void onItemClicked(MainDish mainDish);
         void onCheckboxClicked(MainDish mainDish);
+        void onEditClicked(MainDish mainDish);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
+    public void setMainDishName(String name, int mainDishId) {
+        for (MainDish dish : allMainDishes) {
+            if (dish.getMainDishId() == mainDishId) {
+                dish.setMainDishTitle(name);
+            }
+        }
+    }
+
+    public void addMainDish(MainDish mainDish) {
+        allMainDishes.add(mainDish);
+    }
+
     class MainDishViewHolder extends RecyclerView.ViewHolder {
         TextView mainDishName;
         CheckBox checkbox;
+        ImageView edit;
 
         MainDishViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             this.mainDishName = itemView.findViewById(R.id.dish_title);
             this.checkbox = itemView.findViewById(R.id.dish_checkbox);
+            this.edit = itemView.findViewById(R.id.edit_dish);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -63,12 +83,25 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
                     }
                 }
             });
+
+            this.edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onEditClicked(mainDishes.get(position));
+                        }
+                    }
+                }
+            });
         }
     }
 
     public void setMainDishes(List<MainDish> mainDishes) {
         this.mainDishes = mainDishes;
         this.allMainDishes = new ArrayList<>(mainDishes);
+        notifyDataSetChanged();
     }
 
 //    public MainDishSelectionAdapter(ArrayList<MainDish> mainDishes) {
@@ -109,14 +142,15 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
     }
 
     private Filter mainDishFilter = new Filter() {
+        List<MainDish> filteredList = new ArrayList<>();
+
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<MainDish> filteredList = new ArrayList<>();
+
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(allMainDishes);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-
                 for (MainDish mainDish : mainDishes) {
                     if (mainDish.getMainDishTitle().toLowerCase().startsWith(filterPattern)) {
                         filteredList.add(mainDish);

@@ -196,6 +196,14 @@ public class MenuViewActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_MAIN_DISH_REQUEST) {
                 int mainDishId = data.getIntExtra(MainDishSelectActivity.MAIN_DISH_ID, -1);
+
+//                if (mainDishId == -1) {
+//                    if (data.getBooleanExtra(MainDishSelectActivity.BOUNCE, false) == true) {
+//                        Intent intent = new Intent(MenuViewActivity.this, MainDishSelectActivity.class);
+//                        startActivityForResult(intent, SELECT_MAIN_DISH_REQUEST);
+//                    }
+//                }
+
                 Menu menu = new Menu();
                 menu.setMenuId(menuId);
                 menu.setMainDishId(mainDishId);

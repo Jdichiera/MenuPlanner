@@ -1,5 +1,6 @@
 package com.example.menuplanner.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -22,21 +24,32 @@ import com.example.menuplanner.R;
 import com.example.menuplanner.adapter.MainDishSelectionAdapter;
 import com.example.menuplanner.entity.MainDish;
 import com.example.menuplanner.viewmodel.MainDishViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainDishSelectActivity extends AppCompatActivity {
-    private LiveData<List<MainDish>> mainDishes;
     public static final String MAIN_DISH_ID = "com.example.menuplanner.MAIN_DISH_ID";
+    public static final String MAIN_DISH_NAME = "com.example.menuplanner.MAIN_DISH_NAME";
+    public static final String BOUNCE = "com.example.menuplanner.BOUNCE";
+    public static final int ADD_MAIN_DISH_REQUEST = 1;
+    public static final int EDIT_MAIN_DISH_REQUEST = 2;
     public MainDishSelectionAdapter adapter;
     private MainDishViewModel viewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dish_select);
+
+        FloatingActionButton buttonAddMainDish = findViewById(R.id.button_list_add_main_dish);
+        buttonAddMainDish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createMainDish();
+            }
+        });
 
         RecyclerView recyclerView = findViewById(R.id.main_dish_select_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -47,12 +60,17 @@ public class MainDishSelectActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new MainDishSelectionAdapter.OnItemClickListener() {
             @Override
             public void onItemClicked(MainDish mainDish) {
-                editMainDish(mainDish);
+                selectMainDish(mainDish);
             }
 
             @Override
             public void onCheckboxClicked(MainDish mainDish) {
 
+            }
+
+            @Override
+            public void onEditClicked(MainDish mainDish) {
+                editMainDish(mainDish);
             }
         });
 
@@ -66,11 +84,23 @@ public class MainDishSelectActivity extends AppCompatActivity {
     }
 
 
-    private void editMainDish(MainDish mainDish) {
+    private void selectMainDish(MainDish mainDish) {
         Intent intent = new Intent();
         intent.putExtra(MAIN_DISH_ID, mainDish.getMainDishId());
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    private void editMainDish(MainDish mainDish) {
+        Intent intent = new Intent(MainDishSelectActivity.this, MainDishAddEditActivity.class);
+        intent.putExtra(MAIN_DISH_ID, mainDish.getMainDishId());
+        intent.putExtra(MAIN_DISH_NAME, mainDish.getMainDishTitle());
+        startActivityForResult(intent, EDIT_MAIN_DISH_REQUEST);
+    }
+
+    private void createMainDish() {
+        Intent intent = new Intent(MainDishSelectActivity.this, MainDishAddEditActivity.class);
+        startActivityForResult(intent, ADD_MAIN_DISH_REQUEST);
     }
 
     @Override
@@ -96,4 +126,27 @@ public class MainDishSelectActivity extends AppCompatActivity {
         });
         return true;
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            String mainDishName = data.getStringExtra(MainDishSelectActivity.MAIN_DISH_NAME);
+            MainDish mainDish = new MainDish(mainDishName);
+
+            if (requestCode == ADD_MAIN_DISH_REQUEST) {
+                viewModel.insert(mainDish);
+//                adapter.addMainDish(mainDish);
+            } else if (requestCode == EDIT_MAIN_DISH_REQUEST) {
+                int mainDishId = data.getIntExtra(MainDishSelectActivity.MAIN_DISH_ID, -1);
+                mainDish.setMainDishId(mainDishId);
+                viewModel.update(mainDish);
+//                adapter.setMainDishName(mainDishName, mainDishId);
+            }
+        }
+//        adapter.notifyDataSetChanged();
+//        invalidateOptionsMenu();
+    }
+
 }
