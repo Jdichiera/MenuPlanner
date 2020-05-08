@@ -9,7 +9,6 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.menuplanner.R;
@@ -19,9 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelectionAdapter.MainDishViewHolder> implements Filterable {
-    private ArrayList<MainDish> mainDishes;
+    private ArrayList<MainDish> allMainDishes;
     private OnItemClickListener listener;
-    private List<MainDish> allMainDishes;
+    private List<MainDish> mainDishes;
+//    private LiveData<List<MainDish>> mainDishLiveData;
 
     public interface OnItemClickListener {
         void onItemClicked(int position);
@@ -32,11 +32,11 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
         this.listener = listener;
     }
 
-    public static class MainDishViewHolder extends RecyclerView.ViewHolder {
-        public TextView mainDishName;
-        public CheckBox checkbox;
+    static class MainDishViewHolder extends RecyclerView.ViewHolder {
+        TextView mainDishName;
+        CheckBox checkbox;
 
-        public MainDishViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
+        MainDishViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             this.mainDishName = itemView.findViewById(R.id.dish_title);
             this.checkbox = itemView.findViewById(R.id.dish_checkbox);
@@ -66,22 +66,29 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
         }
     }
 
-    public MainDishSelectionAdapter(ArrayList<MainDish> mainDishes) {
-//        this.mainDishes = mainDishes;
-//        this.allMainDishes = new ArrayList<>(mainDishes);
+    public void setMainDishes(List<MainDish> mainDishes) {
+        this.mainDishes = mainDishes;
+        this.allMainDishes = new ArrayList<>(mainDishes);
     }
 
-    public MainDishSelectionAdapter(LiveData<List<MainDish>> mainDishes) {
-        this.mainDishes = new ArrayList<>(mainDishes.getValue());
-        this.allMainDishes = new ArrayList<>(mainDishes.getValue());
-    }
+//    public MainDishSelectionAdapter(ArrayList<MainDish> mainDishes) {
+//        this.mainDishes = mainDishes;
+//        this.allMainDishes = new ArrayList<>(mainDishes);
+//    }
+
+//    public MainDishSelectionAdapter(LiveData<List<MainDish>> mainDishes) {
+////        this.mainDishes = new ArrayList<>(mainDishes.getValue());
+////        this.allMainDishes = new ArrayList<>(mainDishes.getValue());
+//        this.mainDishLiveData = mainDishes;
+//
+//    }
 
     @NonNull
     @Override
     public MainDishViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dish_item, parent, false);
-        MainDishViewHolder viewHolder = new MainDishViewHolder(view, this.listener);
-        return viewHolder;
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.dish_item, parent, false);
+        return new MainDishViewHolder(view, this.listener);
     }
 
     @Override
@@ -90,7 +97,6 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
         holder.mainDishName.setText(mainDish.getMainDishTitle());
         holder.checkbox.setChecked(false);
     }
-
 
     @Override
     public Filter getFilter() {
@@ -103,7 +109,6 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
     }
 
     private Filter mainDishFilter = new Filter() {
-
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<MainDish> filteredList = new ArrayList<>();
@@ -112,7 +117,7 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (MainDish mainDish : allMainDishes) {
+                for (MainDish mainDish : mainDishes) {
                     if (mainDish.getMainDishTitle().toLowerCase().startsWith(filterPattern)) {
                         filteredList.add(mainDish);
                     }

@@ -27,10 +27,9 @@ import java.util.List;
 
 public class MainDishSelectActivity extends AppCompatActivity {
     private LiveData<List<MainDish>> mainDishes;
-    private RecyclerView recyclerView;
-    private MainDishSelectionAdapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     public static final String MAIN_DISH_ID = "com.example.menuplanner.MAIN_DISH_ID";
+    public MainDishSelectionAdapter adapter;
+    private MainDishViewModel viewModel;
 
 
     @Override
@@ -38,14 +37,45 @@ public class MainDishSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dish_select);
 
-        getMainDishes();
-        buildRecyclerView();
+        RecyclerView recyclerView = findViewById(R.id.main_dish_select_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        adapter = new MainDishSelectionAdapter();
+        recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new MainDishSelectionAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int position) {
+                editMainDish(position);
+            }
+
+            @Override
+            public void onCheckboxClicked(int position) {
+                toggleCheckbox(position);
+            }
+        });
+
+        viewModel = ViewModelProviders.of(this).get(MainDishViewModel.class);
+        viewModel.getAllMainDishes().observe(this, new Observer<List<MainDish>>() {
+            @Override
+            public void onChanged(List<MainDish> mainDishes) {
+                adapter.setMainDishes(mainDishes);
+            }
+        });
     }
 
-    private void getMainDishes() {
-        ArrayList<MainDish> dishes = new ArrayList<>();
 
-        MainDishViewModel viewModel = ViewModelProviders.of(this).get(MainDishViewModel.class);
+
+    private void getMainDishes() {
+//        ArrayList<MainDish> dishes = new ArrayList<>();
+//
+//        MainDishViewModel viewModel = ViewModelProviders.of(this).get(MainDishViewModel.class);
+//        viewModel.getAllMainDishes().observe(this, new Observer<List<MainDish>>() {
+//            @Override
+//            public void onChanged(List<MainDish> mainDishes) {
+//                this.adapter.setMainDishes(mainDishes);
+//            }
+//        });
 //        LiveData<List<MainDish>> mainDishes = Transformations.map(viewModel.getAllMainDishes(), list -> {
 //            ArrayList<MainDish> dis = new ArrayList<>();
 //            for (MainDish d : list) {
@@ -69,24 +99,24 @@ public class MainDishSelectActivity extends AppCompatActivity {
     }
 
     private void buildRecyclerView() {
-        this.recyclerView = findViewById(R.id.main_dish_select_recyclerview);
-        this.recyclerView.setHasFixedSize(true);
-        this.layoutManager = new LinearLayoutManager(this);
-        this.adapter = new MainDishSelectionAdapter(this.mainDishes);
-        this.recyclerView.setLayoutManager(this.layoutManager);
-        this.recyclerView.setAdapter(this.adapter);
-        this.adapter.setOnItemClickListener(new MainDishSelectionAdapter.OnItemClickListener() {
-
-            @Override
-            public void onItemClicked(int position) {
-                editMainDish(position);
-            }
-
-            @Override
-            public void onCheckboxClicked(int position) {
-                toggleCheckbox(position);
-            }
-        });
+//        RecyclerView recyclerView = findViewById(R.id.main_dish_select_recyclerview);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setHasFixedSize(true);
+//        this.adapter = new MainDishSelectionAdapter();
+//        recyclerView.setAdapter(this.adapter);
+//
+//        this.adapter.setOnItemClickListener(new MainDishSelectionAdapter.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClicked(int position) {
+//                editMainDish(position);
+//            }
+//
+//            @Override
+//            public void onCheckboxClicked(int position) {
+//                toggleCheckbox(position);
+//            }
+//        });
     }
 
     private void editMainDish(int position) {
@@ -117,6 +147,7 @@ public class MainDishSelectActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
+                adapter.notifyDataSetChanged();
                 return false;
             }
         });
