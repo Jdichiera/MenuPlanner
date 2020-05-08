@@ -193,14 +193,14 @@ public class MenuViewActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == SELECT_MAIN_DISH_REQUEST) {
-            Intent intent = getIntent();
-            int mainDishId = intent.getIntExtra(MainDishSelectActivity.MAIN_DISH_ID, -1);
-            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-            Menu menu = new Menu();
-            menu.setMenuId(menuId);
-            menu.setMainDishId(mainDishId);
-            menuViewModel.update(menu);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_MAIN_DISH_REQUEST) {
+                int mainDishId = data.getIntExtra(MainDishSelectActivity.MAIN_DISH_ID, -1);
+                Menu menu = new Menu();
+                menu.setMenuId(menuId);
+                menu.setMainDishId(mainDishId);
+                menuViewModel.update(menu);
+            }
         }
     }
 }

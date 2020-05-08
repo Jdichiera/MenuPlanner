@@ -24,15 +24,15 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
 //    private LiveData<List<MainDish>> mainDishLiveData;
 
     public interface OnItemClickListener {
-        void onItemClicked(int position);
-        void onCheckboxClicked(int position);
+        void onItemClicked(MainDish mainDish);
+        void onCheckboxClicked(MainDish mainDish);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    static class MainDishViewHolder extends RecyclerView.ViewHolder {
+    class MainDishViewHolder extends RecyclerView.ViewHolder {
         TextView mainDishName;
         CheckBox checkbox;
 
@@ -47,7 +47,7 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
                     if (listener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClicked(position);
+                            listener.onItemClicked(mainDishes.get(position));
                         }
                     }
                 }
@@ -58,7 +58,7 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
                     if (listener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            listener.onCheckboxClicked(position);
+                            listener.onCheckboxClicked(mainDishes.get(position));
                         }
                     }
                 }

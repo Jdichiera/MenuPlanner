@@ -30,7 +30,7 @@ public class MenuRepository {
     }
 
     public void update(Menu menu) {
-        new InsertMenuAsyncTask(menuDao).execute(menu);
+        new UpdateMenuAsyncTask(menuDao).execute(menu);
     }
 
     public void delete(Menu menu) {
@@ -72,7 +72,7 @@ public class MenuRepository {
 
         @Override
         protected Void doInBackground(Menu... menus) {
-            menuDao.insert(menus[0]);
+            menuDao.update(menus[0]);
             return null;
         }
     }
@@ -86,7 +86,7 @@ public class MenuRepository {
 
         @Override
         protected Void doInBackground(Menu... menus) {
-            menuDao.insert(menus[0]);
+            menuDao.delete(menus[0]);
             return null;
         }
     }
