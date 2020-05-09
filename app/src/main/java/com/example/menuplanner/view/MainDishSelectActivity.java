@@ -1,11 +1,9 @@
 package com.example.menuplanner.view;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.Transformations;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,17 +24,26 @@ import com.example.menuplanner.entity.MainDish;
 import com.example.menuplanner.viewmodel.MainDishViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainDishSelectActivity extends AppCompatActivity {
     public static final String MAIN_DISH_ID = "com.example.menuplanner.MAIN_DISH_ID";
     public static final String MAIN_DISH_NAME = "com.example.menuplanner.MAIN_DISH_NAME";
-    public static final String BOUNCE = "com.example.menuplanner.BOUNCE";
     public static final int ADD_MAIN_DISH_REQUEST = 1;
     public static final int EDIT_MAIN_DISH_REQUEST = 2;
     public MainDishSelectionAdapter adapter;
     private MainDishViewModel viewModel;
+    private MenuItem searchMenu;
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        SearchView searchView = (SearchView) searchMenu.getActionView();
+        searchView.setQuery("", false);
+        searchView.setIconified(true);
+        invalidateOptionsMenu();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,9 +115,10 @@ public class MainDishSelectActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchMenu = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchMenu.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setIconifiedByDefault(true);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -137,16 +145,11 @@ public class MainDishSelectActivity extends AppCompatActivity {
 
             if (requestCode == ADD_MAIN_DISH_REQUEST) {
                 viewModel.insert(mainDish);
-//                adapter.addMainDish(mainDish);
             } else if (requestCode == EDIT_MAIN_DISH_REQUEST) {
                 int mainDishId = data.getIntExtra(MainDishSelectActivity.MAIN_DISH_ID, -1);
                 mainDish.setMainDishId(mainDishId);
                 viewModel.update(mainDish);
-//                adapter.setMainDishName(mainDishName, mainDishId);
             }
         }
-//        adapter.notifyDataSetChanged();
-//        invalidateOptionsMenu();
     }
-
 }

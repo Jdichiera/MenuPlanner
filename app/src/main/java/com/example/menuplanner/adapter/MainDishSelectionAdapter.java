@@ -10,14 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.entity.MainDish;
-import com.example.menuplanner.viewmodel.MainDishViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +22,6 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
     private ArrayList<MainDish> allMainDishes;
     private OnItemClickListener listener;
     private List<MainDish> mainDishes;
-//    private LiveData<List<MainDish>> mainDishLiveData;
 
     public interface OnItemClickListener {
         void onItemClicked(MainDish mainDish);
@@ -36,18 +31,6 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
-    }
-
-    public void setMainDishName(String name, int mainDishId) {
-        for (MainDish dish : allMainDishes) {
-            if (dish.getMainDishId() == mainDishId) {
-                dish.setMainDishTitle(name);
-            }
-        }
-    }
-
-    public void addMainDish(MainDish mainDish) {
-        allMainDishes.add(mainDish);
     }
 
     class MainDishViewHolder extends RecyclerView.ViewHolder {
@@ -104,17 +87,6 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
         notifyDataSetChanged();
     }
 
-//    public MainDishSelectionAdapter(ArrayList<MainDish> mainDishes) {
-//        this.mainDishes = mainDishes;
-//        this.allMainDishes = new ArrayList<>(mainDishes);
-//    }
-
-//    public MainDishSelectionAdapter(LiveData<List<MainDish>> mainDishes) {
-////        this.mainDishes = new ArrayList<>(mainDishes.getValue());
-////        this.allMainDishes = new ArrayList<>(mainDishes.getValue());
-//        this.mainDishLiveData = mainDishes;
-//
-//    }
 
     @NonNull
     @Override
@@ -133,7 +105,7 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
 
     @Override
     public Filter getFilter() {
-        return mainDishFilter;
+        return this.mainDishFilter;
     }
 
     @Override
@@ -142,11 +114,9 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
     }
 
     private Filter mainDishFilter = new Filter() {
-        List<MainDish> filteredList = new ArrayList<>();
-
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-
+            List<MainDish> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(allMainDishes);
             } else {
@@ -169,5 +139,7 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
             mainDishes.addAll((List) results.values);
             notifyDataSetChanged();
         }
+
+        public void a(){}
     };
 }
