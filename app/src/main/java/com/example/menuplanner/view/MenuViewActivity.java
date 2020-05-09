@@ -3,10 +3,7 @@ package com.example.menuplanner.view;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,11 +16,8 @@ import android.widget.Toast;
 import com.example.menuplanner.R;
 import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.entity.Dish;
-import com.example.menuplanner.entity.MainDish;
 import com.example.menuplanner.entity.Menu;
-import com.example.menuplanner.factory.MenuViewModelFactory;
 import com.example.menuplanner.viewmodel.DishViewModel;
-import com.example.menuplanner.viewmodel.MainDishViewModel;
 import com.example.menuplanner.viewmodel.MenuViewModel;
 
 import static androidx.lifecycle.ViewModelProviders.of;

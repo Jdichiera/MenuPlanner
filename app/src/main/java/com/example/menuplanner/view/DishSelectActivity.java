@@ -2,7 +2,6 @@ package com.example.menuplanner.view;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +19,6 @@ import android.widget.SearchView;
 import com.example.menuplanner.R;
 import com.example.menuplanner.adapter.DishSelectionAdapter;
 import com.example.menuplanner.entity.Dish;
-import com.example.menuplanner.entity.MainDish;
 import com.example.menuplanner.viewmodel.DishViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

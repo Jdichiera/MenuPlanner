@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.menuplanner.dao.MainDishDao;
 import com.example.menuplanner.dao.MenuDao;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Menu;

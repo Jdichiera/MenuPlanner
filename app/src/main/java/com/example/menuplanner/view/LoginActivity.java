@@ -2,7 +2,6 @@ package com.example.menuplanner.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -20,12 +19,10 @@ import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Day;
 import com.example.menuplanner.entity.Dish;
-import com.example.menuplanner.entity.MainDish;
 import com.example.menuplanner.entity.User;
 import com.example.menuplanner.utility.DatabaseHelper;
 import com.example.menuplanner.viewmodel.DayViewModel;
 import com.example.menuplanner.viewmodel.DishViewModel;
-import com.example.menuplanner.viewmodel.MainDishViewModel;
 import com.example.menuplanner.viewmodel.MenuViewModel;
 import com.example.menuplanner.viewmodel.UserViewModel;
 
