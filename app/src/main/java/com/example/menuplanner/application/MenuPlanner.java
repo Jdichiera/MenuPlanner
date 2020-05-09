@@ -16,7 +16,7 @@ public class MenuPlanner extends Application {
     public static final String[] DAYS = {
             "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     };
-    public static final String NO_MAIN_DISH = "Select a main dish";
-    public static final String NO_SIDE_DISH = "Select a side dish";
-    public static final String NO_INGREDIENT = "Select an ingredient";
+    public static final String NO_MAIN_DISH_SELECTED_MESSAGE = "Click to select a main dish";
+    public static final String NO_SIDE_DISH_SELECTED_MESSAGE = "Click to select a side dish";
+    public static final String NO_INGREDIENT_SELECTED_MESSAGE = "Select an ingredient";
 }

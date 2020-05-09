@@ -182,7 +182,7 @@ public class LoginActivity extends AppCompatActivity {
         dayViewModel.insert(new Day("Wednesday", 4));
         dayViewModel.insert(new Day("Thursday", 5));
         dayViewModel.insert(new Day("Friday", 6));
-        dayViewModel.insert(new Day("Saturday", 0));
+        dayViewModel.insert(new Day("Saturday", 7));
 
 //        for (String day : MenuPlanner.DAYS) {
 //            dayViewModel.insert(new Day(day));
@@ -194,12 +194,13 @@ public class LoginActivity extends AppCompatActivity {
             menuViewModel = ViewModelProviders.of(this).get(MenuViewModel.class);
         }
 
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(1, 1, 2, 3));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(2, 4, 5, 6));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(3, 7, 8, 9));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(4, 10, 11, 12));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(5, 13, 14, 15));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(6, 16, 17, 18));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(1, 8, 9, 10));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(2, 11, 12, 13));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(3, 14, 15, 16));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(4, 17, 18, 19));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(5, 20, 21, 22));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(6, 23, 24, 25));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(0, 0, 0, 0));
     }
 
     private void addDishData() {
@@ -234,6 +235,7 @@ public class LoginActivity extends AppCompatActivity {
         dishViewModel.insert(new Dish("Candy Bar", false));
         dishViewModel.insert(new Dish("Mashed Potatoes", false));
         dishViewModel.insert(new Dish("Bread with butter and salt", false));
+        dishViewModel.insert(new Dish("Celery and Peanut Butter", false));
 
 
     }

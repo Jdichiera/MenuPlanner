@@ -46,7 +46,7 @@ public class DishViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Dish>> getAllSideDishes() {
-        return repository.getAllDishes();
+        return repository.getAllSideDishes();
     }
 
 }

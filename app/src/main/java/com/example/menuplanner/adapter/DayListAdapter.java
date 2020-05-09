@@ -35,11 +35,11 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.DayListH
     public void onBindViewHolder(@NonNull final DayListHolder holder, int position) {
         Day dayAtPosition = days.get(position);
         holder.dayTitle.setText(dayAtPosition.getDayTitle());
-        if (dayAtPosition.getMenuId() != 0) {
-            holder.hasMenuImage.setVisibility(View.VISIBLE);
-        } else {
-            holder.hasMenuImage.setVisibility(View.INVISIBLE);
-        }
+//        if (dayAtPosition.getMenuId() != 0) {
+//            holder.hasMenuImage.setVisibility(View.VISIBLE);
+//        } else {
+//            holder.hasMenuImage.setVisibility(View.INVISIBLE);
+//        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,12 +65,12 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.DayListH
 
     class DayListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView dayTitle;
-        private ImageView hasMenuImage;
+//        private ImageView hasMenuImage;
 
         DayListHolder(View itemView) {
             super(itemView);
             dayTitle = itemView.findViewById(R.id.day_title);
-            hasMenuImage = itemView.findViewById(R.id.day_has_menu_image);
+//            hasMenuImage = itemView.findViewById(R.id.day_has_menu_image);
         }
 
         @Override

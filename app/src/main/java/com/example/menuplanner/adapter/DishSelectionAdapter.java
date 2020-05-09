@@ -62,6 +62,7 @@ public class DishSelectionAdapter
         }
     }
 
+    @NonNull
     @Override
     public DishViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
