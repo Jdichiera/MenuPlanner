@@ -18,7 +18,9 @@ import com.example.menuplanner.entity.MainDish;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelectionAdapter.MainDishViewHolder> implements Filterable {
+public class MainDishSelectionAdapter
+        extends RecyclerView.Adapter<MainDishSelectionAdapter.MainDishViewHolder>
+        implements Filterable {
     private ArrayList<MainDish> allMainDishes;
     private OnItemClickListener listener;
     private List<MainDish> mainDishes;
@@ -35,13 +37,13 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
 
     class MainDishViewHolder extends RecyclerView.ViewHolder {
         TextView mainDishName;
-        CheckBox checkbox;
+//        CheckBox checkbox;
         ImageView edit;
 
         MainDishViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             this.mainDishName = itemView.findViewById(R.id.dish_title);
-            this.checkbox = itemView.findViewById(R.id.dish_checkbox);
+//            this.checkbox = itemView.findViewById(R.id.dish_checkbox);
             this.edit = itemView.findViewById(R.id.edit_dish);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -55,17 +57,17 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
                     }
                 }
             });
-            this.checkbox.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onCheckboxClicked(mainDishes.get(position));
-                        }
-                    }
-                }
-            });
+//            this.checkbox.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (listener != null) {
+//                        int position = getAdapterPosition();
+//                        if (position != RecyclerView.NO_POSITION) {
+//                            listener.onCheckboxClicked(mainDishes.get(position));
+//                        }
+//                    }
+//                }
+//            });
 
             this.edit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -100,7 +102,6 @@ public class MainDishSelectionAdapter extends RecyclerView.Adapter<MainDishSelec
     public void onBindViewHolder(@NonNull MainDishViewHolder holder, int position) {
         MainDish mainDish = this.mainDishes.get(position);
         holder.mainDishName.setText(mainDish.getMainDishTitle());
-        holder.checkbox.setChecked(false);
     }
 
     @Override

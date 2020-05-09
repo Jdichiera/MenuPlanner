@@ -3,6 +3,7 @@ package com.example.menuplanner.entity;
 import androidx.lifecycle.LiveData;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -28,6 +29,8 @@ public class Menu {
     private int dessertId;
 
     public Menu() {}
+
+    @Ignore
     public Menu(int mainDishId, int sideDish1Id, int sideDish2Id, int sideDish3Id) {
         this.mainDishId = mainDishId;
         this.sideDish1Id = sideDish1Id;

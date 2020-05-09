@@ -10,7 +10,6 @@ import androidx.room.Update;
 import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.entity.MainDish;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Dao

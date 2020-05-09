@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainDishAddEditActivity"></activity>
+        <activity android:name=".view.DishSelectActivity"></activity>
+        <activity android:name=".view.DishAddEditActivity" />
+        <activity android:name=".view.SideDishAddEditActivity" />
+        <activity android:name=".view.SideDishSelectActivity" />
+        <activity android:name=".view.MainDishAddEditActivity" />
         <activity android:name=".view.MainDishSelectActivity" />
         <activity android:name=".view.MenuViewActivity" />
         <activity android:name=".view.DayListActivity" />

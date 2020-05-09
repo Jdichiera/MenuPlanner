@@ -1,6 +1,7 @@
 package com.example.menuplanner.entity;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.menuplanner.application.MenuPlanner;
@@ -11,10 +12,9 @@ public class MainDish {
     private int mainDishId;
     private String mainDishTitle;
 
-    public MainDish() {
+    public MainDish() {}
 
-    }
-
+    @Ignore
     public MainDish(String mainDishTitle) {
         this.mainDishTitle = mainDishTitle;
     }

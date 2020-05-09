@@ -19,10 +19,12 @@ import com.example.menuplanner.R;
 import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Day;
+import com.example.menuplanner.entity.Dish;
 import com.example.menuplanner.entity.MainDish;
 import com.example.menuplanner.entity.User;
 import com.example.menuplanner.utility.DatabaseHelper;
 import com.example.menuplanner.viewmodel.DayViewModel;
+import com.example.menuplanner.viewmodel.DishViewModel;
 import com.example.menuplanner.viewmodel.MainDishViewModel;
 import com.example.menuplanner.viewmodel.MenuViewModel;
 import com.example.menuplanner.viewmodel.UserViewModel;
@@ -33,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     DayViewModel dayViewModel;
     UserViewModel userViewModel;
     MenuViewModel menuViewModel;
-    MainDishViewModel mainDishViewModel;
+    DishViewModel dishViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         addUserData();
         addDayData();
         addMenuData();
-        addMainDishData();
+        addDishData();
     }
 
     private void deleteSequence() {
@@ -156,11 +158,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void deleteMainDishData() {
-        if (mainDishViewModel == null) {
-            mainDishViewModel = ViewModelProviders.of(this).get(MainDishViewModel.class);
+        if (dishViewModel == null) {
+            dishViewModel = ViewModelProviders.of(this).get(DishViewModel.class);
         }
 
-        mainDishViewModel.deleteAllMainDishes();
+        dishViewModel.deleteAllDishes();
     }
 
     private void addUserData() {
@@ -195,24 +197,47 @@ public class LoginActivity extends AppCompatActivity {
             menuViewModel = ViewModelProviders.of(this).get(MenuViewModel.class);
         }
 
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(1, 1, 1, 1));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(2, 2, 2, 2));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(3, 3, 3, 3));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(4, 4, 4, 4));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(5, 5, 5, 5));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(6, 6, 6, 6));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(1, 1, 2, 3));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(2, 4, 5, 6));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(3, 7, 8, 9));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(4, 10, 11, 12));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(5, 13, 14, 15));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(6, 16, 17, 18));
     }
 
-    private void addMainDishData() {
-        if (mainDishViewModel == null) {
-            mainDishViewModel = ViewModelProviders.of(this).get(MainDishViewModel.class);
+    private void addDishData() {
+        if (dishViewModel == null) {
+            dishViewModel = ViewModelProviders.of(this).get(DishViewModel.class);
         }
 
-        mainDishViewModel.insert(new MainDish("Spagetti"));
-        mainDishViewModel.insert(new MainDish("Some Sandwiches"));
-        mainDishViewModel.insert(new MainDish("Ham and Potatoes"));
-        mainDishViewModel.insert(new MainDish("Icecream and bread that is weird"));
-        mainDishViewModel.insert(new MainDish("Yams with Spice"));
-        mainDishViewModel.insert(new MainDish("Time for some meatballs"));
+        // Main dishes
+        dishViewModel.insert(new Dish("Spagetti", true));
+        dishViewModel.insert(new Dish("Some Sandwiches", true));
+        dishViewModel.insert(new Dish("Ham and Potatoes", true));
+        dishViewModel.insert(new Dish("Icecream and bread that is weird", true));
+        dishViewModel.insert(new Dish("Yams with Spice", true));
+        dishViewModel.insert(new Dish("Time for some meatballs", true));
+
+        // Side dishes
+        dishViewModel.insert(new Dish("Beans", false));
+        dishViewModel.insert(new Dish("Rice", false));
+        dishViewModel.insert(new Dish("Blue Vegetables", false));
+        dishViewModel.insert(new Dish("Some Potatoes", false));
+        dishViewModel.insert(new Dish("Ham as a side", false));
+        dishViewModel.insert(new Dish("Chips", false));
+        dishViewModel.insert(new Dish("Fries", false));
+        dishViewModel.insert(new Dish("Fries and Chips", false));
+        dishViewModel.insert(new Dish("Candy", false));
+        dishViewModel.insert(new Dish("Fruit with sauce", false));
+        dishViewModel.insert(new Dish("A fish stick Side", false));
+        dishViewModel.insert(new Dish("Part of a waffle side", false));
+        dishViewModel.insert(new Dish("Jello", false));
+        dishViewModel.insert(new Dish("Part of a sandwich side", false));
+        dishViewModel.insert(new Dish("Fruit Snacks", false));
+        dishViewModel.insert(new Dish("Candy Bar", false));
+        dishViewModel.insert(new Dish("Mashed Potatoes", false));
+        dishViewModel.insert(new Dish("Bread with butter and salt", false));
+
+
     }
 }

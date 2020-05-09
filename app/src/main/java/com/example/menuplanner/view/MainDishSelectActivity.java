@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.adapter.MainDishSelectionAdapter;

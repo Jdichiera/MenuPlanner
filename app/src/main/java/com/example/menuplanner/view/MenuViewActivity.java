@@ -18,9 +18,11 @@ import android.widget.Toast;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.application.MenuPlanner;
+import com.example.menuplanner.entity.Dish;
 import com.example.menuplanner.entity.MainDish;
 import com.example.menuplanner.entity.Menu;
 import com.example.menuplanner.factory.MenuViewModelFactory;
+import com.example.menuplanner.viewmodel.DishViewModel;
 import com.example.menuplanner.viewmodel.MainDishViewModel;
 import com.example.menuplanner.viewmodel.MenuViewModel;
 
@@ -41,16 +43,17 @@ public class MenuViewActivity extends AppCompatActivity {
     private ImageView sideDish1Delete;
     private ImageView sideDish2Delete;
     private ImageView sideDish3Delete;
-//    private ImageView nextDayArrow;
-//    private ImageView previousDayArrow;
 
+    public static final String REQUEST_TYPE = "com.example.menuplanner.REQUEST_TYPE";
     public static final int SELECT_MAIN_DISH_REQUEST = 1;
     public static final int SELECT_SIDE_DISH_1_REQUEST = 2;
     public static final int SELECT_SIDE_DISH_2_REQUEST = 3;
     public static final int SELECT_SIDE_DISH_3_REQUEST = 4;
 
+
+
     MenuViewModel menuViewModel;
-    private MainDishViewModel mainDishViewModel;
+    private DishViewModel dishViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +77,12 @@ public class MenuViewActivity extends AppCompatActivity {
         sideDish2Delete = findViewById(R.id.side_dish__2_delete);
         sideDish3Delete = findViewById(R.id.side_dish__3_delete);
 
-//        nextDayArrow = findViewById(R.id.arrow_next_day);
-//        previousDayArrow = findViewById(R.id.arrow_previous_day);
-
         Intent intent = getIntent();
         String dayName = intent.getStringExtra(DayListActivity.DAY_NAME);
         menuId = intent.getIntExtra(DayListActivity.MENU_ID, -1);
 
         menuViewModel = of(this).get(MenuViewModel.class);
-        mainDishViewModel = of(this).get(MainDishViewModel.class);
+        dishViewModel = of(this).get(DishViewModel.class);
 
         if (menuId > 0) {
             menuViewModel.getMenu(menuId).observe(lifeCycleOwner, new Observer<Menu>() {
@@ -114,36 +114,15 @@ public class MenuViewActivity extends AppCompatActivity {
         sideDish1Delete.setVisibility(View.INVISIBLE);
         sideDish2Delete.setVisibility(View.INVISIBLE);
         sideDish3Delete.setVisibility(View.INVISIBLE);
-
-
     }
-//
-//    private void setClickListeners() {
-////        setDayClickListeners();
-//        setClickListeners();
-//    }
-
-//    private void setDayClickListeners() {
-//        nextDayArrow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(MenuViewActivity.this, "Delete Main Dish", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        previousDayArrow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(MenuViewActivity.this, "Delete Main Dish", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
     private void setClickListeners() {
         mainDishCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Toast.makeText(MenuViewActivity.this, "Delete Main Dish", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MenuViewActivity.this, MainDishSelectActivity.class);
+            Intent intent = new Intent(MenuViewActivity.this, DishSelectActivity.class);
+            intent.putExtra(REQUEST_TYPE, SELECT_MAIN_DISH_REQUEST);
             startActivityForResult(intent, SELECT_MAIN_DISH_REQUEST);
             }
         });
@@ -167,13 +146,15 @@ public class MenuViewActivity extends AppCompatActivity {
         });
     }
 
-    private void observeMainDish(Menu menu, LifecycleOwner lifeCycleOwner) {
-        mainDishViewModel.getMainDish(menu.getMainDishId()).observe(lifeCycleOwner, new Observer<MainDish>() {
+    // Can we set the blank dish after observing
+    private void observeMainDish(Menu menu, LifecycleOwner lifecycleOwner) {
+        dishViewModel.getDish(menu.getMainDishId()).observe(lifecycleOwner, new Observer<Dish>() {
             @Override
-            public void onChanged(MainDish mainDish) {
-                if (mainDish != null) {
-                    mainDishTitle.setText(mainDish.getMainDishTitle());
+            public void onChanged(Dish dish) {
+                if (dish != null) {
+                    mainDishTitle.setText(dish.getDishName());
                 } else {
+                    mainDishTitle.setText(MenuPlanner.NO_MAIN_DISH);
                     mainDishTitle.setText(MenuPlanner.NO_MAIN_DISH);
                 }
             }
@@ -181,12 +162,42 @@ public class MenuViewActivity extends AppCompatActivity {
     }
 
     private void observeSideDish1(Menu menu, LifecycleOwner lifecycleOwner) {
+        dishViewModel.getDish(menu.getSideDish2Id()).observe(lifecycleOwner, new Observer<Dish>() {
+            @Override
+            public void onChanged(Dish dish) {
+                if (dish != null) {
+                    sideDish2Title.setText(dish.getDishName());
+                } else {
+                    sideDish2Title.setText(MenuPlanner.NO_MAIN_DISH);
+                }
+            }
+        });
     }
 
     private void observeSideDish2(Menu menu, LifecycleOwner lifecycleOwner) {
+        dishViewModel.getDish(menu.getSideDish2Id()).observe(lifecycleOwner, new Observer<Dish>() {
+            @Override
+            public void onChanged(Dish dish) {
+                if (dish != null) {
+                    sideDish2Title.setText(dish.getDishName());
+                } else {
+                    sideDish2Title.setText(MenuPlanner.NO_MAIN_DISH);
+                }
+            }
+        });
     }
 
     private void observeSideDish3(Menu menu, LifecycleOwner lifecycleOwner) {
+        dishViewModel.getDish(menu.getSideDish3Id()).observe(lifecycleOwner, new Observer<Dish>() {
+            @Override
+            public void onChanged(Dish dish) {
+                if (dish != null) {
+                    sideDish3Title.setText(dish.getDishName());
+                } else {
+                    sideDish3Title.setText(MenuPlanner.NO_MAIN_DISH);
+                }
+            }
+        });
     }
 
     @Override
@@ -195,14 +206,7 @@ public class MenuViewActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_MAIN_DISH_REQUEST) {
-                int mainDishId = data.getIntExtra(MainDishSelectActivity.MAIN_DISH_ID, -1);
-
-//                if (mainDishId == -1) {
-//                    if (data.getBooleanExtra(MainDishSelectActivity.BOUNCE, false) == true) {
-//                        Intent intent = new Intent(MenuViewActivity.this, MainDishSelectActivity.class);
-//                        startActivityForResult(intent, SELECT_MAIN_DISH_REQUEST);
-//                    }
-//                }
+                int mainDishId = data.getIntExtra(DishSelectActivity.DISH_ID, -1);
 
                 Menu menu = new Menu();
                 menu.setMenuId(menuId);
