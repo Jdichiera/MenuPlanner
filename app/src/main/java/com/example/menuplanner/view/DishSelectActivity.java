@@ -1,5 +1,6 @@
 package com.example.menuplanner.view;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -148,6 +149,7 @@ public class DishSelectActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                adapter.resetItems();
                 adapter.getFilter().filter(newText);
                 return false;
             }
@@ -168,16 +170,21 @@ public class DishSelectActivity extends AppCompatActivity {
                 case ADD_DISH_REQUEST:
                     viewModel.insert(dish);
                     break;
-//                case ADD_SIDE_DISH_REQUEST:
-//                    break;
                 case EDIT_DISH_REQUEST:
                     int dishId = data.getIntExtra(DishSelectActivity.DISH_ID, -1);
                     dish.setDishId(dishId);
                     viewModel.update(dish);
                     break;
-//                case EDIT_SIDE_DISH_REQUEST:
-//                    break;
             }
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        SearchView searchView = (SearchView) searchMenu.getActionView();
+        searchView.setQuery("", false);
+        searchView.setIconified(true);
+        invalidateOptionsMenu();
     }
 }

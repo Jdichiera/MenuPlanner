@@ -118,6 +118,11 @@ public class DishSelectionAdapter
         }
     };
 
+    public void resetItems() {
+        displayedDishes.clear();
+        displayedDishes.addAll(allDishes);
+    }
+
     public void setDishes(List<Dish> dishes) {
         this.displayedDishes = dishes;
         this.allDishes = new ArrayList<>(dishes);
