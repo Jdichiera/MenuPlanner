@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.adapter.DishSelectionAdapter;
@@ -30,7 +31,8 @@ public class DishSelectActivity extends AppCompatActivity {
     public static final String DISH_NAME = "com.example.menuplanner.DISH_NAME";
     public static final int ADD_DISH_REQUEST = 1;
     public static final int EDIT_DISH_REQUEST = 2;
-//    public static final int ADD_MAIN_DISH_REQUEST = 1;
+    public static final int ADD_INGREDIENT_REQUEST = 3;
+    //    public static final int ADD_MAIN_DISH_REQUEST = 1;
 //    public static final int EDIT_MAIN_DISH_REQUEST = 2;
 //    public static final int ADD_SIDE_DISH_REQUEST = 3;
 //    public static final int EDIT_SIDE_DISH_REQUEST = 4;
@@ -54,7 +56,7 @@ public class DishSelectActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView recyclerView = findViewById(R.id.dish_select_recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.dish_and_ingredient_select_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         adapter = new DishSelectionAdapter();
@@ -165,10 +167,15 @@ public class DishSelectActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             String dishName = data.getStringExtra(DishSelectActivity.DISH_NAME);
             Dish dish = new Dish(dishName, isMainDishRequest);
-
             switch (requestCode) {
                 case ADD_DISH_REQUEST:
                     viewModel.insert(dish);
+                    Intent intent = new Intent(DishSelectActivity.this, IngredientSelectActivity.class);
+                    startActivityForResult(intent, ADD_INGREDIENT_REQUEST);
+                    break;
+                case ADD_INGREDIENT_REQUEST:
+                    // updtae dish ingredient join
+                    Toast.makeText(this, "Update dish ingredient join", Toast.LENGTH_SHORT).show();
                     break;
                 case EDIT_DISH_REQUEST:
                     int dishId = data.getIntExtra(DishSelectActivity.DISH_ID, -1);

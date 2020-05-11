@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import com.example.menuplanner.dao.DishDao;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Dish;
+import com.example.menuplanner.entity.DishWithIngredients;
 
 import java.util.List;
 
@@ -46,6 +47,10 @@ public class DishRepository {
 
     public LiveData<List<Dish>> getAllSideDishes() {
         return dishDao.getAllSideDishes();
+    }
+
+    public List<DishWithIngredients> getDishWithIngredients() {
+        return dishDao.getDishWithIngredients();
     }
 
     public void deleteAllDishes() {

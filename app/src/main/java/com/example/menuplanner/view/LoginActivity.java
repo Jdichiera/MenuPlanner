@@ -19,10 +19,12 @@ import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Day;
 import com.example.menuplanner.entity.Dish;
+import com.example.menuplanner.entity.Ingredient;
 import com.example.menuplanner.entity.User;
 import com.example.menuplanner.utility.DatabaseHelper;
 import com.example.menuplanner.viewmodel.DayViewModel;
 import com.example.menuplanner.viewmodel.DishViewModel;
+import com.example.menuplanner.viewmodel.IngredientViewModel;
 import com.example.menuplanner.viewmodel.MenuViewModel;
 import com.example.menuplanner.viewmodel.UserViewModel;
 
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     UserViewModel userViewModel;
     MenuViewModel menuViewModel;
     DishViewModel dishViewModel;
+    IngredientViewModel ingredientViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         deleteDayData();
         deleteMenuData();
         deleteMainDishData();
+        deleteIngredientData();
 
     }
 
@@ -118,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
         addDayData();
         addMenuData();
         addDishData();
+        addIngredientData();
     }
 
     private void deleteSequence() {
@@ -160,6 +165,14 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         dishViewModel.deleteAllDishes();
+    }
+
+    private void deleteIngredientData() {
+        if (ingredientViewModel == null) {
+            ingredientViewModel = ViewModelProviders.of(this).get(IngredientViewModel.class);
+        }
+
+        ingredientViewModel.deleteAllIngredients();
     }
 
     private void addUserData() {
@@ -236,7 +249,22 @@ public class LoginActivity extends AppCompatActivity {
         dishViewModel.insert(new Dish("Mashed Potatoes", false));
         dishViewModel.insert(new Dish("Bread with butter and salt", false));
         dishViewModel.insert(new Dish("Celery and Peanut Butter", false));
+    }
 
+    private void addIngredientData() {
+        if (ingredientViewModel == null) {
+            ingredientViewModel = ViewModelProviders.of(this).get(IngredientViewModel.class);
+        }
 
+        ingredientViewModel.insert(new Ingredient("Salt"));
+        ingredientViewModel.insert(new Ingredient("Butter"));
+        ingredientViewModel.insert(new Ingredient("Pepper"));
+        ingredientViewModel.insert(new Ingredient("Flour"));
+        ingredientViewModel.insert(new Ingredient("Spice"));
+        ingredientViewModel.insert(new Ingredient("Sugar"));
+        ingredientViewModel.insert(new Ingredient("Protein"));
+        ingredientViewModel.insert(new Ingredient("Cinnamon"));
+        ingredientViewModel.insert(new Ingredient("Banana extract"));
+        ingredientViewModel.insert(new Ingredient("Vanilla extract"));
     }
 }

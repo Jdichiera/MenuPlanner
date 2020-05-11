@@ -11,6 +11,8 @@ public class MenuPlanner extends Application {
     public static final String MAINS_TABLE = "mains_table";
     public static final String SIDES_TABLE = "sides_table";
     public static final String DISH_TABLE = "dish_table";
+    public static final String INGREDIENTS_TABLE = "ingredients_table";
+    public static final String DISH_INGREDIENTS = "dish_ingredients_table";
     public static final String TEST_USER_NAME = "1";
     public static final String TEST_USER_PASSWORD = "1";
     public static final String[] DAYS = {

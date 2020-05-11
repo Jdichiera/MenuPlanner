@@ -5,10 +5,12 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.entity.Dish;
+import com.example.menuplanner.entity.DishWithIngredients;
 
 import java.util.List;
 
@@ -37,4 +39,8 @@ public interface DishDao {
 
     @Query("SELECT * FROM " + MenuPlanner.DISH_TABLE + " WHERE isMainDish = 0")
     LiveData<List<Dish>> getAllSideDishes();
+
+    @Transaction
+    @Query("SELECT * FROM " + MenuPlanner.DISH_TABLE)
+    public List<DishWithIngredients> getDishWithIngredients();
 }
