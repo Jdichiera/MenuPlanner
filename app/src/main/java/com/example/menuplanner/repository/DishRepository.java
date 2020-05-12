@@ -9,6 +9,7 @@ import com.example.menuplanner.dao.DishDao;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Dish;
 import com.example.menuplanner.entity.DishWithIngredients;
+import com.example.menuplanner.entity.DishWithIngredientsJoin;
 
 import java.util.List;
 
@@ -49,8 +50,8 @@ public class DishRepository {
         return dishDao.getAllSideDishes();
     }
 
-    public List<DishWithIngredients> getDishWithIngredients() {
-        return dishDao.getDishWithIngredients();
+    public List<DishWithIngredients> getDishWithIngredients(int dishId) {
+        return dishDao.getDishWithIngredients(dishId);
     }
 
     public void deleteAllDishes() {

@@ -15,20 +15,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.CheckBox;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.adapter.DishSelectionAdapter;
 import com.example.menuplanner.entity.Dish;
+import com.example.menuplanner.entity.Ingredient;
 import com.example.menuplanner.viewmodel.DishViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class DishSelectActivity extends AppCompatActivity {
     public static final String DISH_ID = "com.example.menuplanner.DISH_ID";
     public static final String DISH_NAME = "com.example.menuplanner.DISH_NAME";
+    public static final String DISH_INGREDIENTS = "com.example.menuplanner.DISH_INGREDIENTS";
     public static final int ADD_DISH_REQUEST = 1;
     public static final int EDIT_DISH_REQUEST = 2;
     public static final int ADD_INGREDIENT_REQUEST = 3;
@@ -70,7 +75,7 @@ public class DishSelectActivity extends AppCompatActivity {
 
             @Override
             public void onEditClicked(Dish dish) {
-                editDish(dish);
+                editDishIngredients(dish);
             }
         });
 
@@ -103,8 +108,28 @@ public class DishSelectActivity extends AppCompatActivity {
 
     private void editDish(Dish dish) {
         Intent intent = new Intent(DishSelectActivity.this, DishAddEditActivity.class);
+        Set<Ingredient> dishWithIngredients = viewModel.getDishIngredients(dish.getDishId());
+//        intent.putIntegerArrayListExtra(dish)
         intent.putExtra(DISH_ID, dish.getDishId());
         intent.putExtra(DISH_NAME, dish.getDishName());
+        startActivityForResult(intent, EDIT_DISH_REQUEST);
+//        if (isMainDishRequest) {
+//            startActivityForResult(intent, EDIT_DISH_REQUEST);
+//        } else {
+//            startActivityForResult(intent, EDIT_DISH_REQUEST);
+//        }
+    }
+
+    private void editDishIngredients(Dish dish) {
+        Intent intent = new Intent(DishSelectActivity.this, IngredientSelectActivity.class);
+        Set<Ingredient> dishIngredients = viewModel.getDishIngredients(dish.getDishId());
+        ArrayList<Integer> ingredientIds = new ArrayList<>();
+        for (Ingredient ingredient : dishIngredients) {
+            ingredientIds.add(ingredient.getIngredientId());
+        }
+        intent.putExtra(DISH_ID, dish.getDishId());
+        intent.putExtra(DISH_NAME, dish.getDishName());
+        intent.putIntegerArrayListExtra(DISH_INGREDIENTS, ingredientIds);
         startActivityForResult(intent, EDIT_DISH_REQUEST);
 //        if (isMainDishRequest) {
 //            startActivityForResult(intent, EDIT_DISH_REQUEST);

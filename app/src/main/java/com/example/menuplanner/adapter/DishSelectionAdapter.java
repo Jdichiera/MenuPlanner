@@ -3,6 +3,7 @@ package com.example.menuplanner.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -35,7 +36,8 @@ public class DishSelectionAdapter
         DishViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             this.dishName = itemView.findViewById((R.id.dish_title));
-            this.edit = itemView.findViewById(R.id.edit_dish);
+            this.edit = itemView.findViewById(R.id.edit_dish_ingredients);
+            itemView.findViewById(R.id.edit_dish_checkbox).setVisibility(View.INVISIBLE);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

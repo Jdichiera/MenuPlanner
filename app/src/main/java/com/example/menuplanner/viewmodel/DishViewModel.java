@@ -8,9 +8,13 @@ import androidx.lifecycle.LiveData;
 
 import com.example.menuplanner.entity.Dish;
 import com.example.menuplanner.entity.DishWithIngredients;
+import com.example.menuplanner.entity.DishWithIngredientsJoin;
+import com.example.menuplanner.entity.Ingredient;
 import com.example.menuplanner.repository.DishRepository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DishViewModel extends AndroidViewModel {
     private DishRepository repository;
@@ -34,8 +38,16 @@ public class DishViewModel extends AndroidViewModel {
 
     public void deleteAllDishes() { repository.deleteAllDishes();}
 
-    public List<DishWithIngredients> getDishWithIngredients() {
-        return repository.getDishWithIngredients();
+    public List<DishWithIngredients> getDishWithIngredients(int dishId) {
+        return repository.getDishWithIngredients(dishId);
+    }
+
+    public Set<Ingredient> getDishIngredients(int dishId) {
+        Set<Ingredient> ingredients = new HashSet<>();
+        for (DishWithIngredients dish : repository.getDishWithIngredients(dishId)) {
+            ingredients.addAll(dish.ingredients);
+        }
+        return ingredients;
     }
 
     public LiveData<Dish> getDish(int dishId) {

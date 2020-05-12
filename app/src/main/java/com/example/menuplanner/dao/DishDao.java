@@ -41,6 +41,6 @@ public interface DishDao {
     LiveData<List<Dish>> getAllSideDishes();
 
     @Transaction
-    @Query("SELECT * FROM " + MenuPlanner.DISH_TABLE)
-    public List<DishWithIngredients> getDishWithIngredients();
+    @Query("SELECT * FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE dishId = :dishId")
+    public List<DishWithIngredients> getDishWithIngredients(int dishId);
 }
