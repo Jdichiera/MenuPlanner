@@ -68,6 +68,11 @@ public class IngredientSelectActivity extends AppCompatActivity {
             public void onItemClicked(Ingredient ingredient) {
                 Toast.makeText(IngredientSelectActivity.this, "Item CVlicked", Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onCheckboxToggled(Ingredient ingredient) {
+                Toast.makeText(IngredientSelectActivity.this, "Checkbox toggled", Toast.LENGTH_SHORT).show();
+            }
         });
 
         viewModel = ViewModelProviders.of(this).get(IngredientViewModel.class);

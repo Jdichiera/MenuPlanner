@@ -24,8 +24,8 @@ public class IngredientSelectionAdapter
     private ArrayList<Ingredient> allIngredients;
     private List<Ingredient> displayedIngredients;
     private IngredientSelectionAdapter.OnItemClickListener listener;
-    ArrayList<Integer> dishIngredientIds;
-
+    ArrayList<Integer> selectedIngredients;
+    ArrayList<Integer> deletedIngredients;
 
     class IngredientViewHolder extends RecyclerView.ViewHolder {
         TextView ingredientName;
@@ -35,7 +35,8 @@ public class IngredientSelectionAdapter
             super(itemView);
             this.ingredientName = itemView.findViewById((R.id.dish_title));
             itemView.findViewById(R.id.edit_dish_ingredients).setVisibility(View.INVISIBLE);
-            selectCheckbox = itemView.findViewById(R.id.edit_dish_checkbox);
+            this.selectCheckbox = itemView.findViewById(R.id.edit_dish_checkbox);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -43,6 +44,34 @@ public class IngredientSelectionAdapter
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onItemClicked(displayedIngredients.get(position));
+                        }
+                    }
+                }
+            });
+
+            this.selectCheckbox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onCheckboxToggled(displayedIngredients.get(position));
+                            int ingredientId = displayedIngredients.get(position).getIngredientId();
+                            if (selectCheckbox.isChecked()) {
+                                if (!selectedIngredients.contains(ingredientId)) {
+                                    selectedIngredients.add(ingredientId);
+                                }
+                                if (deletedIngredients.contains(ingredientId)) {
+                                    deletedIngredients.remove(deletedIngredients.indexOf(ingredientId));
+                                }
+                            } else {
+                                if (!deletedIngredients.contains(ingredientId)) {
+                                    deletedIngredients.add(ingredientId);
+                                }
+                                if (selectedIngredients.contains(ingredientId)) {
+                                    selectedIngredients.remove(selectedIngredients.indexOf(ingredientId));
+                                }
+                            }
                         }
                     }
                 }
@@ -67,7 +96,7 @@ public class IngredientSelectionAdapter
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         Ingredient ingredient = this.displayedIngredients.get(position);
         holder.ingredientName.setText(ingredient.getIngredientName());
-        if (this.dishIngredientIds.contains(ingredient.getIngredientId())) {
+        if (this.selectedIngredients.contains(ingredient.getIngredientId())) {
             holder.selectCheckbox.setChecked(true);
         }
     }
@@ -126,9 +155,11 @@ public class IngredientSelectionAdapter
 
     public interface OnItemClickListener {
         void onItemClicked(Ingredient ingredient);
+        void onCheckboxToggled(Ingredient ingredient);
     }
 
     public void setDishIngredientIds(ArrayList<Integer> dishIngredientIds) {
-        this.dishIngredientIds = dishIngredientIds;
+        this.selectedIngredients = dishIngredientIds;
+        this.deletedIngredients = new ArrayList<>();
     }
 }

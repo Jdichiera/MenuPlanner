@@ -43,4 +43,8 @@ public interface DishDao {
     @Transaction
     @Query("SELECT * FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE dishId = :dishId")
     public List<DishWithIngredients> getDishWithIngredients(int dishId);
+
+//    @Transaction
+//    @Query("INSER * FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE dishId = :dishId")
+//    public DishWithIngredients insertDishWithIngredients(int joinId, int dishId, int ingredientId);
 }

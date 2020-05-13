@@ -114,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         deleteMenuData();
         deleteMainDishData();
         deleteIngredientData();
+        deleteDishIngredientJoinData();
 
     }
 
@@ -123,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
         addMenuData();
         addDishData();
         addIngredientData();
+        addDishIngredientJoinData();
     }
 
     private void deleteSequence() {
@@ -173,6 +175,12 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         ingredientViewModel.deleteAllIngredients();
+    }
+
+    private void deleteDishIngredientJoinData() {
+        if (dishViewModel == null) {
+            dishViewModel = ViewModelProviders.of(this).get(DishViewModel.class);
+        }
     }
 
     private void addUserData() {
@@ -266,5 +274,11 @@ public class LoginActivity extends AppCompatActivity {
         ingredientViewModel.insert(new Ingredient("Cinnamon"));
         ingredientViewModel.insert(new Ingredient("Banana extract"));
         ingredientViewModel.insert(new Ingredient("Vanilla extract"));
+    }
+
+    private void addDishIngredientJoinData() {
+        if (dishViewModel == null) {
+            dishViewModel = ViewModelProviders.of(this).get(DishViewModel.class);
+        }
     }
 }
