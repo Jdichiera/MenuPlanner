@@ -66,6 +66,10 @@ public class DishViewModel extends AndroidViewModel {
         return ingredients;
     }
 
+    public List<Dish> getDishesWithIds(List<Integer> dishIds) {
+        return repository.getDishesWithIds(dishIds);
+    }
+
     public LiveData<Dish> getDish(int dishId) {
         return repository.getDish(dishId);
     }

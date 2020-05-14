@@ -10,9 +10,11 @@ import android.os.Bundle;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.adapter.ReportIngredientAdapter;
+import com.example.menuplanner.entity.DishWithIngredients;
 import com.example.menuplanner.entity.Ingredient;
 import com.example.menuplanner.viewmodel.IngredientViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReportViewIngredientActivity extends AppCompatActivity {
@@ -29,7 +31,8 @@ public class ReportViewIngredientActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         IngredientViewModel viewModel = ViewModelProviders.of(this).get(IngredientViewModel.class);
-        viewModel.getNeededDishIngredients().observe(this, new Observer<List<Ingredient>>() {
+        List<Integer> ingredientIds = viewModel.getNeededDishIngredientIds();
+        viewModel.getNeededDishIngredients(ingredientIds).observe(this, new Observer<List<Ingredient>>() {
             @Override
             public void onChanged(List<Ingredient> ingredients) {
                 adapter.setIngredients(ingredients);

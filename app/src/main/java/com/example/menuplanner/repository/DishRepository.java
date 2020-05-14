@@ -41,6 +41,10 @@ public class DishRepository {
         return dishDao.getAllDishes();
     }
 
+    public List<Dish> getDishesWithIds(List<Integer> dishIds) {
+        return dishDao.getDishesWithIds(dishIds);
+    }
+
     public LiveData<List<Dish>> getAllMainDishes() {
         return dishDao.getAllMainDishes();
     }

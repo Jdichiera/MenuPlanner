@@ -41,9 +41,9 @@ public interface IngredientDao {
 
     @Transaction
     @Query("SELECT DISTINCT ingredientId FROM " + MenuPlanner.DISH_INGREDIENT_JOIN)
-    List<DishWithIngredients> getNeededDishIngredientIds();
+    List<Integer> getNeededDishIngredientIds();
 
     @Transaction
-    @Query("SELECT * FROM " + MenuPlanner.INGREDIENTS_TABLE + " WHERE ingredientId IN :ingredientIds")
+    @Query("SELECT * FROM " + MenuPlanner.INGREDIENTS_TABLE + " WHERE ingredientId IN (:ingredientIds)")
     LiveData<List<Ingredient>> getNeededDishIngredients(List<Integer> ingredientIds);
 }

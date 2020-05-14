@@ -31,6 +31,9 @@ public interface DishDao {
     @Query("SELECT * FROM " + MenuPlanner.DISH_TABLE + " WHERE dishId = :dishId")
     LiveData<Dish> getDish(int dishId);
 
+    @Query("SELECT * FROM " + MenuPlanner.DISH_TABLE + " WHERE dishId IN (:dishIds)")
+    List<Dish> getDishesWithIds(List<Integer> dishIds);
+
     @Query("SELECT * FROM " + MenuPlanner.DISH_TABLE)
     LiveData<List<Dish>> getAllDishes();
 

@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData;
 import com.example.menuplanner.entity.Menu;
 import com.example.menuplanner.repository.MenuRepository;
 
+import java.util.List;
+
 public class MenuViewModel extends AndroidViewModel {
     private MenuRepository repository;
 
@@ -41,4 +43,5 @@ public class MenuViewModel extends AndroidViewModel {
     public LiveData<Menu> getMenu(int menuId) {
         return repository.getMenu(menuId);
     }
+
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.menuplanner.dao.IngredientDao;
 import com.example.menuplanner.database.MenuPlannerDatabase;
+import com.example.menuplanner.entity.DishWithIngredients;
 import com.example.menuplanner.entity.Ingredient;
 
 import java.util.List;
@@ -49,8 +50,12 @@ public class IngredientRepository {
         ingredientDao.deleteAllDishIngredients(ingredientId);
     }
 
-    public LiveData<List<Ingredient>>  getNeededDishIngredients() {
-        return ingredientDao.getNeededDishIngredients();
+    public LiveData<List<Ingredient>>  getNeededDishIngredients(List<Integer> ingredientIds) {
+        return ingredientDao.getNeededDishIngredients(ingredientIds);
+    }
+
+    public List<Integer>  getNeededDishIngredientIds() {
+        return ingredientDao.getNeededDishIngredientIds();
     }
 
     private static class InsertIngredientAsyncTask extends AsyncTask<Ingredient, Void, Void> {

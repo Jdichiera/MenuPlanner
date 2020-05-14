@@ -9,6 +9,8 @@ import com.example.menuplanner.dao.MenuDao;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Menu;
 
+import java.util.List;
+
 public class MenuRepository {
     private MenuDao menuDao;
     private LiveData<Menu> menu;
@@ -38,6 +40,10 @@ public class MenuRepository {
 
     public LiveData<Menu> getMenu() {
         return menu;
+    }
+
+    public LiveData<List<Menu>> getAllMenus() {
+        return menuDao.getAllMenus();
     }
 
     public LiveData<Menu> getMenu(int menuId) {

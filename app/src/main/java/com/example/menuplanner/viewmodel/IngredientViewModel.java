@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.menuplanner.entity.DishWithIngredients;
 import com.example.menuplanner.entity.Ingredient;
 import com.example.menuplanner.repository.IngredientRepository;
 
@@ -33,8 +34,12 @@ public class IngredientViewModel extends AndroidViewModel {
 
     public void deleteAllIngredients() { repository.deleteAllIngredients();}
 
-    public LiveData<List<Ingredient>>  getNeededDishIngredients() {
-        return repository.getNeededDishIngredients();
+    public LiveData<List<Ingredient>>  getNeededDishIngredients(List<Integer> ingredientIds) {
+        return repository.getNeededDishIngredients(ingredientIds);
+    }
+
+    public List<Integer>  getNeededDishIngredientIds() {
+        return repository.getNeededDishIngredientIds();
     }
 
     public LiveData<Ingredient> getIngredient(int ingredientId) {

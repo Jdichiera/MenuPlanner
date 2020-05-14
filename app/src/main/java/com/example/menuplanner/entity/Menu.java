@@ -9,19 +9,19 @@ import androidx.room.PrimaryKey;
 
 import com.example.menuplanner.application.MenuPlanner;
 
-@Entity(tableName = MenuPlanner.MENUS_TABLE,
-        indices = {@Index("dayId")},
-        foreignKeys = {
-                @ForeignKey(
-                        entity = Day.class,
-                        parentColumns = "dayId",
-                        childColumns = "menuId",
-                        onDelete = ForeignKey.CASCADE)
-        })
+@Entity(tableName = MenuPlanner.MENUS_TABLE)
+//        indices = {@Index("dayId")},
+//        foreignKeys = {
+//                @ForeignKey(
+//                        entity = Day.class,
+//                        parentColumns = "dayId",
+//                        childColumns = "menuId",
+//                        onDelete = ForeignKey.CASCADE)
+//        })
 public class Menu {
     @PrimaryKey(autoGenerate = true)
     private int menuId;
-    private int dayId;
+//    private int dayId;
     private int mainDishId;
     private int sideDish1Id;
     private int sideDish2Id;
@@ -38,13 +38,13 @@ public class Menu {
         this.sideDish3Id = sideDish3Id;
     }
 
-    public int getDayId() {
-        return dayId;
-    }
-
-    public void setDayId(int dayId) {
-        this.dayId = dayId;
-    }
+//    public int getDayId() {
+//        return dayId;
+//    }
+//
+//    public void setDayId(int dayId) {
+//        this.dayId = dayId;
+//    }
 
     public int getMenuId() {
         return menuId;
