@@ -8,6 +8,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,18 +25,21 @@ public class IngredientSelectionAdapter
     private ArrayList<Ingredient> allIngredients;
     private List<Ingredient> displayedIngredients;
     private IngredientSelectionAdapter.OnItemClickListener listener;
-    ArrayList<Integer> selectedIngredients;
-    ArrayList<Integer> deletedIngredients;
+    public ArrayList<Integer> selectedIngredients;
+    public ArrayList<Integer> deletedIngredients;
+    public ArrayList<IngredientViewHolder> viewHolderArray = new ArrayList<>();
 
-    class IngredientViewHolder extends RecyclerView.ViewHolder {
+    public class IngredientViewHolder extends RecyclerView.ViewHolder {
         TextView ingredientName;
+        ImageView delete;
         CheckBox selectCheckbox;
 
         IngredientViewHolder(View itemView, final IngredientSelectionAdapter.OnItemClickListener listener) {
             super(itemView);
             this.ingredientName = itemView.findViewById((R.id.dish_title));
             itemView.findViewById(R.id.edit_dish_ingredients).setVisibility(View.INVISIBLE);
-            this.selectCheckbox = itemView.findViewById(R.id.edit_dish_checkbox);
+            selectCheckbox = itemView.findViewById(R.id.edit_dish_checkbox);
+            this.delete = itemView.findViewById(R.id.delete_dish);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -49,7 +53,7 @@ public class IngredientSelectionAdapter
                 }
             });
 
-            this.selectCheckbox.setOnClickListener(new View.OnClickListener() {
+            selectCheckbox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
@@ -76,6 +80,28 @@ public class IngredientSelectionAdapter
                     }
                 }
             });
+
+            this.delete.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClicked(position, displayedIngredients.get(position));
+                        }
+                    }
+                }
+            });
+
+            viewHolderArray.add(this);
+        }
+
+        public void setSelectCheckbox(int position) {
+            if (selectCheckbox.isChecked()) {
+                selectCheckbox.setChecked(true);
+            } else {
+                selectCheckbox.setChecked(false);
+            }
         }
     }
 
@@ -98,6 +124,7 @@ public class IngredientSelectionAdapter
         holder.ingredientName.setText(ingredient.getIngredientName());
         if (this.selectedIngredients.contains(ingredient.getIngredientId())) {
             holder.selectCheckbox.setChecked(true);
+//            this.viewHolderArray.add(holder);
         }
     }
 
@@ -138,6 +165,12 @@ public class IngredientSelectionAdapter
         }
     };
 
+    public void setDeletedItemCheckbox(int position) {
+        boolean checked = this.viewHolderArray.get(position).selectCheckbox.isChecked() ? false : true;
+        this.viewHolderArray.get(position).selectCheckbox.setChecked(checked);
+        this.viewHolderArray.remove(position);
+    }
+
     public void resetItems() {
         displayedIngredients.clear();
         displayedIngredients.addAll(allIngredients);
@@ -156,6 +189,7 @@ public class IngredientSelectionAdapter
     public interface OnItemClickListener {
         void onItemClicked(Ingredient ingredient);
         void onCheckboxToggled(Ingredient ingredient);
+        void onDeleteClicked(int position, Ingredient ingredient);
     }
 
     public void setDishIngredientIds(ArrayList<Integer> dishIngredientIds) {

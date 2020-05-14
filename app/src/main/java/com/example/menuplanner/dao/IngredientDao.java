@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.menuplanner.application.MenuPlanner;
@@ -32,4 +33,8 @@ public interface IngredientDao {
 
     @Query("SELECT * FROM " + MenuPlanner.INGREDIENTS_TABLE)
     LiveData<List<Ingredient>> getAllIngredients();
+
+    @Transaction
+    @Query("DELETE FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE ingredientId = :ingredientId")
+    public void deleteAllDishIngredients(int ingredientId);
 }

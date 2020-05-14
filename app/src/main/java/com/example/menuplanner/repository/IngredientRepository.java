@@ -45,6 +45,10 @@ public class IngredientRepository {
         new IngredientRepository.DeleteAllIngredientsAsyncTask(ingredientDao).execute();
     }
 
+    public void deleteAllDishIngredients(int ingredientId) {
+        ingredientDao.deleteAllDishIngredients(ingredientId);
+    }
+
     private static class InsertIngredientAsyncTask extends AsyncTask<Ingredient, Void, Void> {
         private IngredientDao ingredientDao;
 

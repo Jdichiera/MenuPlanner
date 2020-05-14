@@ -280,5 +280,7 @@ public class LoginActivity extends AppCompatActivity {
         if (dishViewModel == null) {
             dishViewModel = ViewModelProviders.of(this).get(DishViewModel.class);
         }
+
+        dishViewModel.deleteAllDishIngredients();
     }
 }

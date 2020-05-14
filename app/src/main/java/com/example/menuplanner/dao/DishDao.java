@@ -40,11 +40,22 @@ public interface DishDao {
     @Query("SELECT * FROM " + MenuPlanner.DISH_TABLE + " WHERE isMainDish = 0")
     LiveData<List<Dish>> getAllSideDishes();
 
+    @Query("DELETE FROM " + MenuPlanner.DISH_INGREDIENT_JOIN)
+    public void deleteAllDishIngredients();
+
     @Transaction
     @Query("SELECT * FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE dishId = :dishId")
     public List<DishWithIngredients> getDishWithIngredients(int dishId);
 
-//    @Transaction
-//    @Query("INSER * FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE dishId = :dishId")
-//    public DishWithIngredients insertDishWithIngredients(int joinId, int dishId, int ingredientId);
+    @Transaction
+    @Query("DELETE FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE dishId = :dishId AND ingredientId = :ingredientId")
+    public void deleteDishIngredients(int dishId, int ingredientId);
+
+    @Transaction
+    @Query("INSERT OR REPLACE INTO " + MenuPlanner.DISH_INGREDIENT_JOIN + " (dishId, ingredientId) VALUES (:dishId, :ingredientId)")
+    public void insertDishIngredients(int dishId, int ingredientId);
+
+    @Transaction
+    @Query("DELETE FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE dishId = :dishId")
+    public void deleteAllDishIngredientsForDish(int dishId);
 }

@@ -42,6 +42,22 @@ public class DishViewModel extends AndroidViewModel {
         return repository.getDishWithIngredients(dishId);
     }
 
+    public void deleteAllDishIngredientsForDish(int dishId) {
+        repository.deleteAllDishIngredientsForDish(dishId);
+    }
+
+    public void insertDishIngredients(int dishId, int ingredientId) {
+        repository.insertDishIngredients(dishId, ingredientId);
+    }
+
+    public void deleteDishIngredients(int dishId, int ingredientId) {
+        repository.deleteDishIngredients(dishId, ingredientId);
+    }
+
+    public void deleteAllDishIngredients() {
+        repository.deleteAllDishIngredients();
+    }
+
     public Set<Ingredient> getDishIngredients(int dishId) {
         Set<Ingredient> ingredients = new HashSet<>();
         for (DishWithIngredients dish : repository.getDishWithIngredients(dishId)) {

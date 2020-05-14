@@ -37,6 +37,7 @@ public class IngredientSelectActivity extends AppCompatActivity {
     public static final String INGREDIENT_ID = "com.example.menuplanner.INGREDIENT_ID";
     public static final String INGREDIENT_NAME = "com.example.menuplanner.INGREDIENT_NAME";
     public ArrayList<Integer> dishIngredientIds;
+    int dishId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class IngredientSelectActivity extends AppCompatActivity {
 //        findViewById(R.id.edit_dish_ingredients).setVisibility(View.INVISIBLE);
         save = findViewById(R.id.button_add_save_ingredients);
         Intent intent = getIntent();
+        dishId = intent.getIntExtra(DishSelectActivity.DISH_ID, -1);
         dishIngredientIds = intent.getIntegerArrayListExtra(DishSelectActivity.DISH_INGREDIENTS);
 
         FloatingActionButton buttonAddIngredient = findViewById(R.id.button_list_add_ingredient);
@@ -66,12 +68,15 @@ public class IngredientSelectActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new IngredientSelectionAdapter.OnItemClickListener() {
             @Override
             public void onItemClicked(Ingredient ingredient) {
-                Toast.makeText(IngredientSelectActivity.this, "Item CVlicked", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCheckboxToggled(Ingredient ingredient) {
-                Toast.makeText(IngredientSelectActivity.this, "Checkbox toggled", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDeleteClicked(int position, Ingredient ingredient) {
+                deleteIngredient(position, ingredient);
             }
         });
 
@@ -93,6 +98,13 @@ public class IngredientSelectActivity extends AppCompatActivity {
 
     public void saveIngredients(View view) {
         Toast.makeText(this, "Save Ingredients", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.putIntegerArrayListExtra(DishSelectActivity.DISH_INGREDIENTS, adapter.selectedIngredients);
+        intent.putIntegerArrayListExtra(DishSelectActivity.DELETED_DISH_INGREDIENTS, adapter.deletedIngredients);
+        intent.putExtra(DishSelectActivity.DISH_ID, dishId);
+        setResult(RESULT_OK, intent);
+        finish();
+
     }
 
     @Override
@@ -119,5 +131,11 @@ public class IngredientSelectActivity extends AppCompatActivity {
             }
         });
         return true;
+    }
+
+    private void deleteIngredient(int position, Ingredient ingredient) {
+        adapter.setDeletedItemCheckbox(position);
+        viewModel.delete(ingredient);
+        viewModel.deleteAllDishIngredients(ingredient.getIngredientId());
     }
 }

@@ -32,11 +32,15 @@ public class DishSelectionAdapter
     class DishViewHolder extends RecyclerView.ViewHolder {
         TextView dishName;
         ImageView edit;
+        ImageView delete;
+        ImageView ingredientList;
 
         DishViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             this.dishName = itemView.findViewById((R.id.dish_title));
-            this.edit = itemView.findViewById(R.id.edit_dish_ingredients);
+            this.edit = itemView.findViewById(R.id.edit_dish);
+            this.delete = itemView.findViewById(R.id.delete_dish);
+            this.ingredientList = itemView.findViewById(R.id.edit_dish_ingredients);
             itemView.findViewById(R.id.edit_dish_checkbox).setVisibility(View.INVISIBLE);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +61,28 @@ public class DishSelectionAdapter
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onEditClicked(displayedDishes.get(position));
+                        }
+                    }
+                }
+            });
+            this.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClicked(displayedDishes.get(position));
+                        }
+                    }
+                }
+            });
+            this.ingredientList.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onIngredientListClicked(displayedDishes.get(position));
                         }
                     }
                 }
@@ -133,6 +159,8 @@ public class DishSelectionAdapter
 
     public interface OnItemClickListener {
         void onItemClicked(Dish dish);
+        void onIngredientListClicked(Dish dish);
         void onEditClicked(Dish dish);
+        void onDeleteClicked(Dish dish);
     }
 }

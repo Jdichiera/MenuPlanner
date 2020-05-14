@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         android:padding="4dp"
         android:scrollbars="vertical"
-        tools:listitem="@layout/dish_and_ingredient_item"/>
+        tools:listitem="@layout/dish_and_ingredient_item"
+        android:layout_marginBottom="115dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_list_add_dish"
@@ -20,6 +21,18 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
         android:layout_gravity="bottom|end"
-        android:layout_margin="32dp"/>
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Press a dish name to select it.
+        \nPress the list icon to view the dishes ingredients.
+        \nPress the plus icon to add a new dish.
+        \nPress the pencil icon to edit the dish name.
+        \nPress the trash icon to delete a dish."
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="20dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

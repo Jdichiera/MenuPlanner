@@ -13,14 +13,15 @@
         android:padding="4dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/dish_and_ingredient_item"
-        android:layout_marginBottom="100dp"/>
+        android:layout_marginBottom="115dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_list_add_ingredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="32dp"
+        android:layout_marginBottom="130dp"
+        android:layout_marginRight="5dp"
         android:src="@drawable/ic_add" />
 
     <Button
@@ -28,10 +29,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="23dp"
         android:layout_centerHorizontal="true"
         android:onClick="saveIngredients"
+        android:layout_marginBottom="130dp"
         android:layout_gravity="bottom|center_horizontal"
         android:text="Save" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Press an ingredient name to select it.
+        \nCheck the checkbox to select the ingredient.
+        \nUncheck the checkbox to deselect the ingredient.
+        \nPress the plus icon to add a new ingredient.
+        \nPress the pencil icon to edit the ingredient name.
+        \nPress the trash icon to delete an ingredient."
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="20dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

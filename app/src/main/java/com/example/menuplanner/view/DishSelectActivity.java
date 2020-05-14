@@ -15,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.CheckBox;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -34,9 +33,10 @@ public class DishSelectActivity extends AppCompatActivity {
     public static final String DISH_ID = "com.example.menuplanner.DISH_ID";
     public static final String DISH_NAME = "com.example.menuplanner.DISH_NAME";
     public static final String DISH_INGREDIENTS = "com.example.menuplanner.DISH_INGREDIENTS";
+    public static final String DELETED_DISH_INGREDIENTS = "com.example.menuplanner.DELETED_DISH_INGREDIENTS";
     public static final int ADD_DISH_REQUEST = 1;
     public static final int EDIT_DISH_REQUEST = 2;
-    public static final int ADD_INGREDIENT_REQUEST = 3;
+    public static final int EDIT_INGREDIENT_REQUEST = 3;
     //    public static final int ADD_MAIN_DISH_REQUEST = 1;
 //    public static final int EDIT_MAIN_DISH_REQUEST = 2;
 //    public static final int ADD_SIDE_DISH_REQUEST = 3;
@@ -74,8 +74,18 @@ public class DishSelectActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onEditClicked(Dish dish) {
+            public void onIngredientListClicked(Dish dish) {
                 editDishIngredients(dish);
+            }
+
+            @Override
+            public void onEditClicked(Dish dish) {
+                editDish(dish);
+            }
+
+            @Override
+            public void onDeleteClicked(Dish dish) {
+                deleteDish(dish);
             }
         });
 
@@ -108,7 +118,7 @@ public class DishSelectActivity extends AppCompatActivity {
 
     private void editDish(Dish dish) {
         Intent intent = new Intent(DishSelectActivity.this, DishAddEditActivity.class);
-        Set<Ingredient> dishWithIngredients = viewModel.getDishIngredients(dish.getDishId());
+//        Set<Ingredient> dishWithIngredients = viewModel.getDishIngredients(dish.getDishId());
 //        intent.putIntegerArrayListExtra(dish)
         intent.putExtra(DISH_ID, dish.getDishId());
         intent.putExtra(DISH_NAME, dish.getDishName());
@@ -130,7 +140,7 @@ public class DishSelectActivity extends AppCompatActivity {
         intent.putExtra(DISH_ID, dish.getDishId());
         intent.putExtra(DISH_NAME, dish.getDishName());
         intent.putIntegerArrayListExtra(DISH_INGREDIENTS, ingredientIds);
-        startActivityForResult(intent, EDIT_DISH_REQUEST);
+        startActivityForResult(intent, EDIT_INGREDIENT_REQUEST);
 //        if (isMainDishRequest) {
 //            startActivityForResult(intent, EDIT_DISH_REQUEST);
 //        } else {
@@ -192,18 +202,30 @@ public class DishSelectActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             String dishName = data.getStringExtra(DishSelectActivity.DISH_NAME);
             Dish dish = new Dish(dishName, isMainDishRequest);
+            int dishId;
             switch (requestCode) {
                 case ADD_DISH_REQUEST:
                     viewModel.insert(dish);
-                    Intent intent = new Intent(DishSelectActivity.this, IngredientSelectActivity.class);
-                    startActivityForResult(intent, ADD_INGREDIENT_REQUEST);
                     break;
-                case ADD_INGREDIENT_REQUEST:
-                    // updtae dish ingredient join
-                    Toast.makeText(this, "Update dish ingredient join", Toast.LENGTH_SHORT).show();
+                case EDIT_INGREDIENT_REQUEST:
+                    dishId = data.getIntExtra(DISH_ID, -1);
+                    ArrayList<Integer> ingredientsToDelete = data.getIntegerArrayListExtra(DELETED_DISH_INGREDIENTS);
+                    ArrayList<Integer> ingredientsToAdd = data.getIntegerArrayListExtra(DISH_INGREDIENTS);
+
+                    if (ingredientsToDelete != null) {
+                        for (Integer ingredientId : ingredientsToDelete) {
+                            viewModel.deleteDishIngredients(dishId, ingredientId);
+                        }
+                    }
+
+                    if (ingredientsToAdd != null) {
+                        for (Integer ingredientId : ingredientsToAdd) {
+                            viewModel.insertDishIngredients(dishId, ingredientId);
+                        }
+                    }
                     break;
                 case EDIT_DISH_REQUEST:
-                    int dishId = data.getIntExtra(DishSelectActivity.DISH_ID, -1);
+                    dishId = data.getIntExtra(DishSelectActivity.DISH_ID, -1);
                     dish.setDishId(dishId);
                     viewModel.update(dish);
                     break;
@@ -218,5 +240,10 @@ public class DishSelectActivity extends AppCompatActivity {
         searchView.setQuery("", false);
         searchView.setIconified(true);
         invalidateOptionsMenu();
+    }
+    
+    private void deleteDish(Dish dish) {
+        viewModel.delete(dish);
+        viewModel.deleteAllDishIngredientsForDish(dish.getDishId());
     }
 }

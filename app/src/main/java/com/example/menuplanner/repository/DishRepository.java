@@ -9,7 +9,6 @@ import com.example.menuplanner.dao.DishDao;
 import com.example.menuplanner.database.MenuPlannerDatabase;
 import com.example.menuplanner.entity.Dish;
 import com.example.menuplanner.entity.DishWithIngredients;
-import com.example.menuplanner.entity.DishWithIngredientsJoin;
 
 import java.util.List;
 
@@ -52,6 +51,22 @@ public class DishRepository {
 
     public List<DishWithIngredients> getDishWithIngredients(int dishId) {
         return dishDao.getDishWithIngredients(dishId);
+    }
+
+    public void deleteAllDishIngredients() {
+        dishDao.deleteAllDishIngredients();
+    }
+
+    public void deleteAllDishIngredientsForDish(int dishId) {
+        dishDao.deleteAllDishIngredientsForDish(dishId);
+    }
+
+    public void insertDishIngredients(int dishId, int ingredientId) {
+        dishDao.insertDishIngredients(dishId, ingredientId);
+    }
+
+    public void deleteDishIngredients(int dishId, int ingredientId) {
+        dishDao.deleteDishIngredients(dishId, ingredientId);
     }
 
     public void deleteAllDishes() {

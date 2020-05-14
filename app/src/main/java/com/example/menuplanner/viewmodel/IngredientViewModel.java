@@ -40,4 +40,8 @@ public class IngredientViewModel extends AndroidViewModel {
     public LiveData<List<Ingredient>> getAllIngredients() {
         return repository.getAllIngredients();
     }
+
+    public void deleteAllDishIngredients(int ingredientId) {
+        repository.deleteAllDishIngredients(ingredientId);
+    }
 }
