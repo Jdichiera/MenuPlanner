@@ -57,49 +57,6 @@ public class ReportMenuAdapter extends RecyclerView.Adapter<ReportMenuAdapter.Me
         } else {
             holder.sideDish3Title.setText(MenuPlanner.REPORT_NO_SIDE_DISH_SELECTED);
         }
-
-
-
-
-//        String mainDishName = null;
-//        String sideDish1Name = null;
-//        String sideDish2Name = null;
-//        String sideDish3Name = null;
-//        com.example.menuplanner.entity.
-//
-//        if (menuAtPosition.getMainDishId() - 1 > 0) {
-//            mainDishName = dishes.get(menuAtPosition.getMainDishId() -1).getDishName();
-//        }
-//        if (menuAtPosition.getSideDish1Id() - 1 > 0) {
-//            sideDish1Name = dishes.get(menuAtPosition.getSideDish1Id() -1).getDishName();
-//        }
-//        if (menuAtPosition.getSideDish2Id() - 1 > 0) {
-//            sideDish2Name = dishes.get(menuAtPosition.getSideDish1Id() -1).getDishName();
-//        }
-//        if (menuAtPosition.getSideDish3Id() - 1 > 0) {
-//            sideDish3Name = dishes.get(menuAtPosition.getSideDish3Id() -1).getDishName();
-//        }
-//
-//        if (mainDishName != null) {
-//            holder.mainDishTitle.setText(mainDishName);
-//        } else {
-//            holder.mainDishTitle.setText(MenuPlanner.REPORT_NO_MAIN_DISH_SELECTED);
-//        }
-//        if (sideDish1Name != null) {
-//            holder.sideDish1Title.setText(sideDish1Name);
-//        } else {
-//            holder.sideDish1Title.setText(MenuPlanner.REPORT_NO_SIDE_DISH_SELECTED);
-//        }
-//        if (sideDish2Name != null) {
-//            holder.sideDish2Title.setText(sideDish2Name);
-//        } else {
-//            holder.sideDish2Title.setText(MenuPlanner.REPORT_NO_SIDE_DISH_SELECTED);
-//        }
-//        if (sideDish3Name != null) {
-//            holder.sideDish3Title.setText(sideDish3Name);
-//        } else {
-//            holder.sideDish3Title.setText(MenuPlanner.REPORT_NO_SIDE_DISH_SELECTED);
-//        }
     }
 
     @Override
