@@ -8,7 +8,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,7 +32,6 @@ public class IngredientSelectionAdapter
         TextView ingredientName;
         ImageView edit;
         CheckBox selectCheckbox;
-        int itemId;
 
         IngredientViewHolder(View itemView, final IngredientSelectionAdapter.OnItemClickListener listener) {
             super(itemView);
@@ -94,28 +92,6 @@ public class IngredientSelectionAdapter
                     }
                 }
             });
-
-//            this.delete.setOnClickListener( new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (listener != null) {
-//                        int position = getAdapterPosition();
-//                        if (position != RecyclerView.NO_POSITION) {
-//                            listener.onDeleteClicked(position, displayedIngredients.get(position));
-//                        }
-//                    }
-//                }
-//            });
-
-//            viewHolderArray.add(this);
-        }
-
-        public void setSelectCheckbox(int position) {
-            if (selectCheckbox.isChecked()) {
-                selectCheckbox.setChecked(true);
-            } else {
-                selectCheckbox.setChecked(false);
-            }
         }
     }
 
@@ -140,9 +116,6 @@ public class IngredientSelectionAdapter
         if (this.selectedIngredients.contains(ingredient.getIngredientId())) {
             holder.selectCheckbox.setChecked(true);
         }
-//        if (viewHolderArray.get(position).itemId != this.displayedIngredients.get(position).getIngredientId()) {
-//
-//        }
     }
 
     @Override
@@ -182,12 +155,6 @@ public class IngredientSelectionAdapter
         }
     };
 
-//    public void setDeletedItemCheckbox(int position) {
-//        boolean checked = this.viewHolderArray.get(position).selectCheckbox.isChecked() ? false : true;
-//        this.viewHolderArray.get(position).selectCheckbox.setChecked(checked);
-//        this.viewHolderArray.remove(position);
-//    }
-
     public void resetItems() {
         displayedIngredients.clear();
         displayedIngredients.addAll(allIngredients);
@@ -207,7 +174,6 @@ public class IngredientSelectionAdapter
         void onItemClicked(Ingredient ingredient);
         void onCheckboxToggled(Ingredient ingredient);
         void onEditClicked(Ingredient ingredient);
-//        void onDeleteClicked(int position, Ingredient ingredient);
     }
 
     public void setDishIngredientIds(ArrayList<Integer> dishIngredientIds) {

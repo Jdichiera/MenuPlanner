@@ -23,10 +23,6 @@ public class UserRepository {
         new DeleteAllUsersAsyncTask(userDao).execute();
     }
 
-//    public void deleteSequence() {
-//        this.userDao.deleteSequence();
-//    }
-
     public int validateLogin(String username, String password) {
         return userDao.validateLogin(username, password);
     }

@@ -1,20 +1,15 @@
 package com.example.menuplanner.adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.entity.Day;
-import com.example.menuplanner.view.DayListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +30,6 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.DayListH
     public void onBindViewHolder(@NonNull final DayListHolder holder, int position) {
         Day dayAtPosition = days.get(position);
         holder.dayTitle.setText(dayAtPosition.getDayTitle());
-//        if (dayAtPosition.getMenuId() != 0) {
-//            holder.hasMenuImage.setVisibility(View.VISIBLE);
-//        } else {
-//            holder.hasMenuImage.setVisibility(View.INVISIBLE);
-//        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,12 +55,10 @@ public class DayListAdapter extends RecyclerView.Adapter<DayListAdapter.DayListH
 
     class DayListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView dayTitle;
-//        private ImageView hasMenuImage;
 
         DayListHolder(View itemView) {
             super(itemView);
             dayTitle = itemView.findViewById(R.id.day_title);
-//            hasMenuImage = itemView.findViewById(R.id.day_has_menu_image);
         }
 
         @Override

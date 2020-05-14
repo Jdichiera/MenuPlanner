@@ -48,17 +48,17 @@ public interface DishDao {
 
     @Transaction
     @Query("SELECT * FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE dishId = :dishId")
-    public List<DishWithIngredients> getDishWithIngredients(int dishId);
+    List<DishWithIngredients> getDishWithIngredients(int dishId);
 
     @Transaction
     @Query("DELETE FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE dishId = :dishId AND ingredientId = :ingredientId")
-    public void deleteDishIngredients(int dishId, int ingredientId);
+    void deleteDishIngredients(int dishId, int ingredientId);
 
     @Transaction
     @Query("INSERT OR REPLACE INTO " + MenuPlanner.DISH_INGREDIENT_JOIN + " (dishId, ingredientId) VALUES (:dishId, :ingredientId)")
-    public void insertDishIngredients(int dishId, int ingredientId);
+    void insertDishIngredients(int dishId, int ingredientId);
 
     @Transaction
     @Query("DELETE FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE dishId = :dishId")
-    public void deleteAllDishIngredientsForDish(int dishId);
+    void deleteAllDishIngredientsForDish(int dishId);
 }

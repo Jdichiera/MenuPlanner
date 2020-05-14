@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData;
 
 import com.example.menuplanner.dao.IngredientDao;
 import com.example.menuplanner.database.MenuPlannerDatabase;
-import com.example.menuplanner.entity.DishWithIngredients;
 import com.example.menuplanner.entity.Ingredient;
 
 import java.util.List;
@@ -113,8 +112,4 @@ public class IngredientRepository {
             return null;
         }
     }
-
-
-
-
 }

@@ -9,7 +9,6 @@ import androidx.room.RoomDatabase;
 import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.dao.DayDao;
 import com.example.menuplanner.dao.DishDao;
-//import com.example.menuplanner.dao.DishWithIngredientsDao;
 import com.example.menuplanner.dao.IngredientDao;
 import com.example.menuplanner.dao.MenuDao;
 import com.example.menuplanner.dao.UserDao;
@@ -32,7 +31,6 @@ public abstract class MenuPlannerDatabase extends RoomDatabase {
     public abstract MenuDao menuDao();
     public abstract DishDao dishDao();
     public abstract IngredientDao ingredientDao();
-//    public abstract DishWithIngredientsDao dishWithIngredientsDao();
 
     public static synchronized MenuPlannerDatabase getInstance(Context context) {
         if (instance == null) {

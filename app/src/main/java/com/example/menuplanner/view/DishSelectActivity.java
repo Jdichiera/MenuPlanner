@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.adapter.DishSelectionAdapter;
@@ -37,10 +36,7 @@ public class DishSelectActivity extends AppCompatActivity {
     public static final int ADD_DISH_REQUEST = 1;
     public static final int EDIT_DISH_REQUEST = 2;
     public static final int EDIT_INGREDIENT_REQUEST = 3;
-    //    public static final int ADD_MAIN_DISH_REQUEST = 1;
-//    public static final int EDIT_MAIN_DISH_REQUEST = 2;
-//    public static final int ADD_SIDE_DISH_REQUEST = 3;
-//    public static final int EDIT_SIDE_DISH_REQUEST = 4;
+
     public DishSelectionAdapter adapter;
     private DishViewModel viewModel;
     private MenuItem searchMenu;
@@ -118,16 +114,10 @@ public class DishSelectActivity extends AppCompatActivity {
 
     private void editDish(Dish dish) {
         Intent intent = new Intent(DishSelectActivity.this, DishAddEditActivity.class);
-//        Set<Ingredient> dishWithIngredients = viewModel.getDishIngredients(dish.getDishId());
-//        intent.putIntegerArrayListExtra(dish)
+
         intent.putExtra(DISH_ID, dish.getDishId());
         intent.putExtra(DISH_NAME, dish.getDishName());
         startActivityForResult(intent, EDIT_DISH_REQUEST);
-//        if (isMainDishRequest) {
-//            startActivityForResult(intent, EDIT_DISH_REQUEST);
-//        } else {
-//            startActivityForResult(intent, EDIT_DISH_REQUEST);
-//        }
     }
 
     private void editDishIngredients(Dish dish) {
@@ -141,21 +131,11 @@ public class DishSelectActivity extends AppCompatActivity {
         intent.putExtra(DISH_NAME, dish.getDishName());
         intent.putIntegerArrayListExtra(DISH_INGREDIENTS, ingredientIds);
         startActivityForResult(intent, EDIT_INGREDIENT_REQUEST);
-//        if (isMainDishRequest) {
-//            startActivityForResult(intent, EDIT_DISH_REQUEST);
-//        } else {
-//            startActivityForResult(intent, EDIT_DISH_REQUEST);
-//        }
     }
 
     private void createDish() {
         Intent intent = new Intent(DishSelectActivity.this, DishAddEditActivity.class);
         startActivityForResult(intent, ADD_DISH_REQUEST);
-//        if (isMainDishRequest) {
-//            startActivityForResult(intent, ADD_DISH_REQUEST);
-//        } else {
-//            startActivityForResult(intent, ADD_DISH_REQUEST);
-//        }
     }
 
     private void setDishType() {
