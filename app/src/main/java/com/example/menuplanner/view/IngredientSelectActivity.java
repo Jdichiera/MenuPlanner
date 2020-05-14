@@ -1,5 +1,6 @@
 package com.example.menuplanner.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -36,6 +37,8 @@ public class IngredientSelectActivity extends AppCompatActivity {
     Button save;
     public static final String INGREDIENT_ID = "com.example.menuplanner.INGREDIENT_ID";
     public static final String INGREDIENT_NAME = "com.example.menuplanner.INGREDIENT_NAME";
+    public static final int ADD_INGREDIENT_REQUEST = 1;
+    public static final int EDIT_INGREDIENT_REQUEST = 2;
     public ArrayList<Integer> dishIngredientIds;
     int dishId;
 
@@ -75,9 +78,14 @@ public class IngredientSelectActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onDeleteClicked(int position, Ingredient ingredient) {
-                deleteIngredient(position, ingredient);
+            public void onEditClicked(Ingredient ingredient) {
+                editIngredient(ingredient);
             }
+
+//            @Override
+//            public void onDeleteClicked(int position, Ingredient ingredient) {
+//                deleteIngredient(position, ingredient);
+//            }
         });
 
         viewModel = ViewModelProviders.of(this).get(IngredientViewModel.class);
@@ -87,13 +95,21 @@ public class IngredientSelectActivity extends AppCompatActivity {
                 adapter.setIngredients(ingredients);
             }
         });
+
     }
 
     private void createIngredient() {
-        Intent intent = new Intent();
-//        intent.putExtra(INGREDIENT_ID, dish.getDishId());
-        setResult(RESULT_OK, intent);
-        finish();
+        Intent intent = new Intent(IngredientSelectActivity.this, IngredientAddEditActivity.class);
+        startActivityForResult(intent, ADD_INGREDIENT_REQUEST);
+    }
+
+    private void editIngredient(Ingredient ingredient) {
+        Intent intent = new Intent(IngredientSelectActivity.this, IngredientAddEditActivity.class);
+//        Set<Ingredient> dishWithIngredients = viewModel.getDishIngredients(dish.getDishId());
+//        intent.putIntegerArrayListExtra(dish)
+        intent.putExtra(INGREDIENT_ID, ingredient.getIngredientId());
+        intent.putExtra(INGREDIENT_NAME, ingredient.getIngredientName());
+        startActivityForResult(intent, EDIT_INGREDIENT_REQUEST);
     }
 
     public void saveIngredients(View view) {
@@ -133,9 +149,30 @@ public class IngredientSelectActivity extends AppCompatActivity {
         return true;
     }
 
-    private void deleteIngredient(int position, Ingredient ingredient) {
-        adapter.setDeletedItemCheckbox(position);
-        viewModel.delete(ingredient);
-        viewModel.deleteAllDishIngredients(ingredient.getIngredientId());
+//    private void deleteIngredient(int position, Ingredient ingredient) {
+//        adapter.setDeletedItemCheckbox(position);
+//        viewModel.delete(ingredient);
+//        viewModel.deleteAllDishIngredients(ingredient.getIngredientId());
+//    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            String ingredientName = data.getStringExtra(INGREDIENT_NAME);
+            Ingredient ingredient = new Ingredient(ingredientName);
+            int ingredientId;
+            switch (requestCode) {
+                case ADD_INGREDIENT_REQUEST:
+                    viewModel.insert(ingredient);
+                    break;
+                case EDIT_INGREDIENT_REQUEST:
+                    ingredientId = data.getIntExtra(INGREDIENT_ID, -1);
+                    ingredient.setIngredientId(ingredientId);
+                    viewModel.update(ingredient);
+                    break;
+            }
+        }
     }
 }

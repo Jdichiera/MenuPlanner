@@ -31,15 +31,17 @@ public class IngredientSelectionAdapter
 
     public class IngredientViewHolder extends RecyclerView.ViewHolder {
         TextView ingredientName;
-        ImageView delete;
+        ImageView edit;
         CheckBox selectCheckbox;
+        int itemId;
 
         IngredientViewHolder(View itemView, final IngredientSelectionAdapter.OnItemClickListener listener) {
             super(itemView);
             this.ingredientName = itemView.findViewById((R.id.dish_title));
             itemView.findViewById(R.id.edit_dish_ingredients).setVisibility(View.INVISIBLE);
             selectCheckbox = itemView.findViewById(R.id.edit_dish_checkbox);
-            this.delete = itemView.findViewById(R.id.delete_dish);
+            edit = itemView.findViewById(R.id.edit_dish);
+            itemView.findViewById(R.id.delete_dish).setVisibility(View.INVISIBLE);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -81,19 +83,31 @@ public class IngredientSelectionAdapter
                 }
             });
 
-            this.delete.setOnClickListener( new View.OnClickListener() {
+            this.edit.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            listener.onDeleteClicked(position, displayedIngredients.get(position));
+                            listener.onEditClicked(displayedIngredients.get(position));
                         }
                     }
                 }
             });
 
-            viewHolderArray.add(this);
+//            this.delete.setOnClickListener( new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (listener != null) {
+//                        int position = getAdapterPosition();
+//                        if (position != RecyclerView.NO_POSITION) {
+//                            listener.onDeleteClicked(position, displayedIngredients.get(position));
+//                        }
+//                    }
+//                }
+//            });
+
+//            viewHolderArray.add(this);
         }
 
         public void setSelectCheckbox(int position) {
@@ -110,6 +124,7 @@ public class IngredientSelectionAdapter
         return this.ingredientFilter;
     }
 
+
     @NonNull
     @Override
     public IngredientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -124,8 +139,10 @@ public class IngredientSelectionAdapter
         holder.ingredientName.setText(ingredient.getIngredientName());
         if (this.selectedIngredients.contains(ingredient.getIngredientId())) {
             holder.selectCheckbox.setChecked(true);
-//            this.viewHolderArray.add(holder);
         }
+//        if (viewHolderArray.get(position).itemId != this.displayedIngredients.get(position).getIngredientId()) {
+//
+//        }
     }
 
     @Override
@@ -165,11 +182,11 @@ public class IngredientSelectionAdapter
         }
     };
 
-    public void setDeletedItemCheckbox(int position) {
-        boolean checked = this.viewHolderArray.get(position).selectCheckbox.isChecked() ? false : true;
-        this.viewHolderArray.get(position).selectCheckbox.setChecked(checked);
-        this.viewHolderArray.remove(position);
-    }
+//    public void setDeletedItemCheckbox(int position) {
+//        boolean checked = this.viewHolderArray.get(position).selectCheckbox.isChecked() ? false : true;
+//        this.viewHolderArray.get(position).selectCheckbox.setChecked(checked);
+//        this.viewHolderArray.remove(position);
+//    }
 
     public void resetItems() {
         displayedIngredients.clear();
@@ -189,7 +206,8 @@ public class IngredientSelectionAdapter
     public interface OnItemClickListener {
         void onItemClicked(Ingredient ingredient);
         void onCheckboxToggled(Ingredient ingredient);
-        void onDeleteClicked(int position, Ingredient ingredient);
+        void onEditClicked(Ingredient ingredient);
+//        void onDeleteClicked(int position, Ingredient ingredient);
     }
 
     public void setDishIngredientIds(ArrayList<Integer> dishIngredientIds) {

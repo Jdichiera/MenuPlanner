@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.DishAddEditActivity">
+    tools:context=".view.IngredientAddEditActivity">
 
     <TextView
         android:id="@+id/ingredient_title_prompt"
@@ -13,11 +13,11 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="Dish Name:"
+        android:text="Ingredient Name:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
-        android:id="@+id/dish_add_edit_title"
+        android:id="@+id/ingredient_add_edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -29,13 +29,13 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <Button
-        android:id="@+id/button_add_save_dish"
+        android:id="@+id/button_add_save_ingredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="23dp"
         android:layout_centerHorizontal="true"
-        android:onClick="saveDish"
+        android:onClick="saveIngredient"
         android:text="Save" />
 
 </RelativeLayout>
