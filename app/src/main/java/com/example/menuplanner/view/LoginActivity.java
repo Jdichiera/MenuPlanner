@@ -230,33 +230,63 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // Main dishes
-        dishViewModel.insert(new Dish("Spagetti", true));
-        dishViewModel.insert(new Dish("Some Sandwiches", true));
-        dishViewModel.insert(new Dish("Ham and Potatoes", true));
-        dishViewModel.insert(new Dish("Icecream and bread that is weird", true));
-        dishViewModel.insert(new Dish("Yams with Spice", true));
-        dishViewModel.insert(new Dish("Time for some meatballs", true));
+//        dishViewModel.insert(new Dish("Spagetti", true));
+//        dishViewModel.insert(new Dish("Some Sandwiches", true));
+//        dishViewModel.insert(new Dish("Ham and Potatoes", true));
+//        dishViewModel.insert(new Dish("Icecream and bread that is weird", true));
+//        dishViewModel.insert(new Dish("Yams with Spice", true));
+//        dishViewModel.insert(new Dish("Time for some meatballs", true));
+
+        dishViewModel.insert(new Dish("1", true));
+        dishViewModel.insert(new Dish("2", true));
+        dishViewModel.insert(new Dish("3", true));
+        dishViewModel.insert(new Dish("4", true));
+        dishViewModel.insert(new Dish("5", true));
+        dishViewModel.insert(new Dish("6", true));
 
         // Side dishes
-        dishViewModel.insert(new Dish("Beans", false));
-        dishViewModel.insert(new Dish("Rice", false));
-        dishViewModel.insert(new Dish("Blue Vegetables", false));
-        dishViewModel.insert(new Dish("Some Potatoes", false));
-        dishViewModel.insert(new Dish("Ham as a side", false));
-        dishViewModel.insert(new Dish("Chips", false));
-        dishViewModel.insert(new Dish("Fries", false));
-        dishViewModel.insert(new Dish("Fries and Chips", false));
-        dishViewModel.insert(new Dish("Candy", false));
-        dishViewModel.insert(new Dish("Fruit with sauce", false));
-        dishViewModel.insert(new Dish("A fish stick Side", false));
-        dishViewModel.insert(new Dish("Part of a waffle side", false));
-        dishViewModel.insert(new Dish("Jello", false));
-        dishViewModel.insert(new Dish("Part of a sandwich side", false));
-        dishViewModel.insert(new Dish("Fruit Snacks", false));
-        dishViewModel.insert(new Dish("Candy Bar", false));
-        dishViewModel.insert(new Dish("Mashed Potatoes", false));
-        dishViewModel.insert(new Dish("Bread with butter and salt", false));
-        dishViewModel.insert(new Dish("Celery and Peanut Butter", false));
+        dishViewModel.insert(new Dish("?-?", false));
+        dishViewModel.insert(new Dish("1-1", false));
+        dishViewModel.insert(new Dish("1-2", false));
+        dishViewModel.insert(new Dish("1-3", false));
+        dishViewModel.insert(new Dish("2-1", false));
+        dishViewModel.insert(new Dish("2-2", false));
+        dishViewModel.insert(new Dish("2-3", false));
+        dishViewModel.insert(new Dish("3-1", false));
+        dishViewModel.insert(new Dish("3-2", false));
+        dishViewModel.insert(new Dish("3-3", false));
+        dishViewModel.insert(new Dish("4-1", false));
+        dishViewModel.insert(new Dish("4-2", false));
+        dishViewModel.insert(new Dish("4-3", false));
+        dishViewModel.insert(new Dish("5-1", false));
+        dishViewModel.insert(new Dish("5-2", false));
+        dishViewModel.insert(new Dish("5-3", false));
+        dishViewModel.insert(new Dish("6-1", false));
+        dishViewModel.insert(new Dish("6-2", false));
+        dishViewModel.insert(new Dish("6-3", false));
+        dishViewModel.insert(new Dish("7-1", false));
+        dishViewModel.insert(new Dish("7-2", false));
+        dishViewModel.insert(new Dish("7-3", false));
+        dishViewModel.insert(new Dish("7-3", false));
+//        dishViewModel.insert(new Dish("Beans", false));
+//        dishViewModel.insert(new Dish("Rice", false));
+//        dishViewModel.insert(new Dish("Blue Vegetables", false));
+//        dishViewModel.insert(new Dish("Some Potatoes", false));
+//        dishViewModel.insert(new Dish("Ham as a side", false));
+//        dishViewModel.insert(new Dish("Chips", false));
+//        dishViewModel.insert(new Dish("Fries", false));
+//        dishViewModel.insert(new Dish("Fries and Chips", false));
+//        dishViewModel.insert(new Dish("Candy", false));
+//        dishViewModel.insert(new Dish("Fruit with sauce", false));
+//        dishViewModel.insert(new Dish("A fish stick Side", false));
+//        dishViewModel.insert(new Dish("Part of a waffle side", false));
+//        dishViewModel.insert(new Dish("Jello", false));
+//        dishViewModel.insert(new Dish("Part of a sandwich side", false));
+//        dishViewModel.insert(new Dish("Fruit Snacks", false));
+//        dishViewModel.insert(new Dish("Candy Bar", false));
+//        dishViewModel.insert(new Dish("Mashed Potatoes", false));
+//        dishViewModel.insert(new Dish("Bread with butter and salt", false));
+//        dishViewModel.insert(new Dish("Celery and Peanut Butter", false));
     }
 
     private void addIngredientData() {

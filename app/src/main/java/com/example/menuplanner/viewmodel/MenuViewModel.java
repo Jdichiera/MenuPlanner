@@ -44,4 +44,8 @@ public class MenuViewModel extends AndroidViewModel {
         return repository.getMenu(menuId);
     }
 
+    public LiveData<List<Menu>> getAllMenus() {
+        return repository.getAllMenus();
+    }
+
 }
