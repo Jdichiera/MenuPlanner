@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.IngredientAddEditActivity"></activity>
+        <activity android:name=".view.ReportViewIngredientActivity"></activity>
+        <activity android:name=".view.ReportViewMenuActivity" />
+        <activity android:name=".view.ReportViewActivity" />
+        <activity android:name=".view.IngredientAddEditActivity" />
         <activity android:name=".view.IngredientSelectActivity" />
         <activity android:name=".view.DishSelectActivity" />
         <activity android:name=".view.DishAddEditActivity" />

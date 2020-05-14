@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ReportViewActivity">
+
+    <Button
+        android:id="@+id/button_report_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Menu Report"
+        android:layout_margin="25dp"
+        android:layout_gravity="center_vertical"
+        android:onClick="viewMenuReport"/>
+
+    <Button
+        android:id="@+id/button_report_ingredient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingredient Report"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="150dp"
+        android:onClick="viewIngredientReport"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Ingredient Report for a list of menu ingredients.
+        \nClick Menu Report for a daily menu."
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="20dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

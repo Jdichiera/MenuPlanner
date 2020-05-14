@@ -42,15 +42,6 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-<!--            <ImageView-->
-<!--                android:id="@+id/main_dish_delete"-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/title_main"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:gravity="center"-->
-<!--                android:src="@drawable/ic_delete" />-->
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

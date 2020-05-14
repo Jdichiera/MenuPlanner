@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="25dp"
+    android:layout_marginTop="25dp"
+    android:layout_marginBottom="10dp">
+
+    <RelativeLayout
+        android:id="@+id/report__menu_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/report_menu_day_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Monday"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/report_menu_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/report_menu_day_title"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:text="Spagetti"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/report_menu_join"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/report_menu_main_title"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:text="with" />
+
+        <TextView
+            android:id="@+id/report_menu_side1_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/report_menu_join"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:text="Beans"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/report_menu_side2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/report_menu_side1_title"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:text="Bread"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/report_menu_side3_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/report_menu_side2_title"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:text="Spicy Meatballs"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

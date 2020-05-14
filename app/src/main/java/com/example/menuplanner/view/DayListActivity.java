@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.menuplanner.R;
@@ -48,6 +50,14 @@ public class DayListActivity extends AppCompatActivity {
                 adapter.setDays(days);
             }
         });
+
+        Button reportButton = findViewById(R.id.button_reports);
+        reportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewReports();
+            }
+        });
     }
     
     private void viewDay(Day day) {
@@ -55,6 +65,11 @@ public class DayListActivity extends AppCompatActivity {
         intent.putExtra(DAY_NAME, day.getDayTitle());
         intent.putExtra(MENU_ID, day.getMenuId());
         intent.putExtra(DAY_ID, day.getDayId());
+        startActivity(intent);
+    }
+
+    private void viewReports() {
+        Intent intent = new Intent(DayListActivity.this, ReportViewActivity.class);
         startActivity(intent);
     }
 }

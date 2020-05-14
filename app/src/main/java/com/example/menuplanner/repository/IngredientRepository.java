@@ -49,6 +49,10 @@ public class IngredientRepository {
         ingredientDao.deleteAllDishIngredients(ingredientId);
     }
 
+    public LiveData<List<Ingredient>>  getNeededDishIngredients() {
+        return ingredientDao.getNeededDishIngredients();
+    }
+
     private static class InsertIngredientAsyncTask extends AsyncTask<Ingredient, Void, Void> {
         private IngredientDao ingredientDao;
 

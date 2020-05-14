@@ -10,6 +10,7 @@ import androidx.room.Update;
 
 import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.entity.Dish;
+import com.example.menuplanner.entity.DishWithIngredients;
 import com.example.menuplanner.entity.Ingredient;
 
 import java.util.List;
@@ -37,4 +38,12 @@ public interface IngredientDao {
     @Transaction
     @Query("DELETE FROM " + MenuPlanner.DISH_INGREDIENT_JOIN + " WHERE ingredientId = :ingredientId")
     public void deleteAllDishIngredients(int ingredientId);
+
+    @Transaction
+    @Query("SELECT DISTINCT ingredientId FROM " + MenuPlanner.DISH_INGREDIENT_JOIN)
+    List<DishWithIngredients> getNeededDishIngredientIds();
+
+    @Transaction
+    @Query("SELECT * FROM " + MenuPlanner.INGREDIENTS_TABLE + " WHERE ingredientId IN :ingredientIds")
+    LiveData<List<Ingredient>> getNeededDishIngredients(List<Integer> ingredientIds);
 }
