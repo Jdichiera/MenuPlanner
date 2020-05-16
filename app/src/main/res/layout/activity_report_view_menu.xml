@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".view.ReportViewMenuActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daily Menu Report"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/report_menu_recyclerview"
         android:layout_width="match_parent"
@@ -13,13 +22,22 @@
         android:padding="4dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/report_menu_item"
-        android:layout_marginBottom="80dp"/>
+        android:layout_marginBottom="80dp"
+        android:layout_marginTop="35dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Each day's current menu selections"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:id="@+id/report_ingredient_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report Generated 10/5/20"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="10dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

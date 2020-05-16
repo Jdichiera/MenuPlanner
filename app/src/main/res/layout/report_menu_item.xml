@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="25dp"
+    android:layout_marginHorizontal="10dp"
     android:layout_marginTop="25dp"
     android:layout_marginBottom="10dp">
 
@@ -20,33 +20,47 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/report_menu_main_title"
+            android:id="@+id/report_menu_main_dish_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/report_menu_day_title"
+            android:text="Main Dish"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/report_menu_side_dish_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/report_menu_day_title"
+            android:text="Side Dishes"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="55dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/report_menu_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/report_menu_main_dish_header"
             android:layout_marginStart="10dp"
             android:gravity="center"
             android:text="Spagetti"
+            android:maxWidth="200dp"
             android:textColor="@android:color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/report_menu_join"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/report_menu_main_title"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
-            android:text="with" />
-
-        <TextView
             android:id="@+id/report_menu_side1_title"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/report_menu_join"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
+            android:layout_below="@+id/report_menu_side_dish_header"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
             android:text="Beans"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -54,23 +68,26 @@
 
         <TextView
             android:id="@+id/report_menu_side2_title"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/report_menu_side1_title"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="6dp"
             android:text="Bread"
+            android:textAlignment="textStart"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/report_menu_side3_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/report_menu_side2_title"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="25dp"
             android:text="Spicy Meatballs"
             android:textColor="@android:color/black"
             android:textSize="20sp"

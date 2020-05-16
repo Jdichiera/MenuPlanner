@@ -7,14 +7,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.adapter.ReportMenuAdapter;
+import com.example.menuplanner.application.MenuPlanner;
 import com.example.menuplanner.entity.Dish;
 import com.example.menuplanner.entity.Menu;
 import com.example.menuplanner.viewmodel.DishViewModel;
 import com.example.menuplanner.viewmodel.MenuViewModel;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ReportViewMenuActivity extends AppCompatActivity {
@@ -29,6 +32,11 @@ public class ReportViewMenuActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         final ReportMenuAdapter adapter = new ReportMenuAdapter();
         recyclerView.setAdapter(adapter);
+
+        LocalDateTime dateAndTime = LocalDateTime.now();
+        String reportingDate = MenuPlanner.DATE_FORMATTER.format(dateAndTime);
+        TextView reportDate = findViewById(R.id.report_ingredient_date);
+        reportDate.setText("Report generated " + reportingDate);
 
         MenuViewModel menuViewModel = ViewModelProviders.of(this).get(MenuViewModel.class);
         DishViewModel dishViewModel = ViewModelProviders.of(this).get(DishViewModel.class);

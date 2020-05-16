@@ -2,6 +2,8 @@ package com.example.menuplanner.application;
 
 import android.app.Application;
 
+import java.time.format.DateTimeFormatter;
+
 public class MenuPlanner extends Application {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "menu_planner_database";
@@ -20,4 +22,5 @@ public class MenuPlanner extends Application {
     public static final String NO_SIDE_DISH_SELECTED_MESSAGE = "Click to select a side dish";
     public static final String REPORT_NO_MAIN_DISH_SELECTED = "No main dish selected";
     public static final String REPORT_NO_SIDE_DISH_SELECTED = "No side dish selected";
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
 }
