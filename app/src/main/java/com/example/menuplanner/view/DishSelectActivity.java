@@ -114,7 +114,6 @@ public class DishSelectActivity extends AppCompatActivity {
 
     private void editDish(Dish dish) {
         Intent intent = new Intent(DishSelectActivity.this, DishAddEditActivity.class);
-
         intent.putExtra(DISH_ID, dish.getDishId());
         intent.putExtra(DISH_NAME, dish.getDishName());
         startActivityForResult(intent, EDIT_DISH_REQUEST);

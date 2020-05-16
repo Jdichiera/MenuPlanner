@@ -82,15 +82,6 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-<!--            <ImageView-->
-<!--                android:id="@+id/side_dish__1_delete"-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/title_side_1"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:gravity="center"-->
-<!--                android:src="@drawable/ic_delete" />-->
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -129,15 +120,6 @@
                 android:textColor="@android:color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
-
-<!--            <ImageView-->
-<!--                android:id="@+id/side_dish__2_delete"-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/title_side_2"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:gravity="center"-->
-<!--                android:src="@drawable/ic_delete" />-->
 
         </RelativeLayout>
 
@@ -178,15 +160,6 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-<!--            <ImageView-->
-<!--                android:id="@+id/side_dish__3_delete"-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/title_side_3"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:gravity="center"-->
-<!--                android:src="@drawable/ic_delete" />-->
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -203,15 +176,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-<!--            <ImageView-->
-<!--                android:id="@+id/arrow_next_day"-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentStart="true"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:src="@drawable/ic_arrow_upward"-->
-<!--                android:layout_marginStart="70dp"/>-->
-
             <TextView
                 android:id="@+id/title_day"
                 android:layout_width="wrap_content"
@@ -221,15 +185,6 @@
                 android:textColor="@android:color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
-
-<!--            <ImageView-->
-<!--                android:id="@+id/arrow_previous_day"-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:src="@drawable/ic_arrow_downward"-->
-<!--                android:layout_marginEnd="70dp"/>-->
 
         </RelativeLayout>
 

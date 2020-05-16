@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.menuplanner.entity.DishWithIngredients;
 import com.example.menuplanner.entity.Ingredient;
 import com.example.menuplanner.repository.IngredientRepository;
 

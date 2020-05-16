@@ -10,11 +10,9 @@ import android.os.Bundle;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.adapter.ReportIngredientAdapter;
-import com.example.menuplanner.entity.DishWithIngredients;
 import com.example.menuplanner.entity.Ingredient;
 import com.example.menuplanner.viewmodel.IngredientViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ReportViewIngredientActivity extends AppCompatActivity {

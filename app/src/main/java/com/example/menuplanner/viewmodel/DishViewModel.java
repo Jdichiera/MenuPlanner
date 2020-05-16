@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData;
 
 import com.example.menuplanner.entity.Dish;
 import com.example.menuplanner.entity.DishWithIngredients;
-import com.example.menuplanner.entity.DishWithIngredientsJoin;
 import com.example.menuplanner.entity.Ingredient;
 import com.example.menuplanner.repository.DishRepository;
 

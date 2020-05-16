@@ -115,6 +115,8 @@ public class IngredientSelectionAdapter
         holder.ingredientName.setText(ingredient.getIngredientName());
         if (this.selectedIngredients.contains(ingredient.getIngredientId())) {
             holder.selectCheckbox.setChecked(true);
+        } else {
+            holder.selectCheckbox.setChecked(false);
         }
     }
 

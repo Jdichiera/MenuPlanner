@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,10 +32,6 @@ public class MenuViewActivity extends AppCompatActivity {
     private RelativeLayout sideDish1Card;
     private RelativeLayout sideDish2Card;
     private RelativeLayout sideDish3Card;
-//    private ImageView mainDishDelete;
-//    private ImageView sideDish1Delete;
-//    private ImageView sideDish2Delete;
-//    private ImageView sideDish3Delete;
 
     private int mainDishId;
     private int sideDish1Id;
@@ -70,11 +65,6 @@ public class MenuViewActivity extends AppCompatActivity {
         sideDish2Card = findViewById(R.id.card_side_2);
         sideDish3Card = findViewById(R.id.card_side_3);
 
-//        mainDishDelete = findViewById(R.id.main_dish_delete);
-//        sideDish1Delete = findViewById(R.id.side_dish__1_delete);
-//        sideDish2Delete = findViewById(R.id.side_dish__2_delete);
-//        sideDish3Delete = findViewById(R.id.side_dish__3_delete);
-
         Intent intent = getIntent();
         String dayName = intent.getStringExtra(DayListActivity.DAY_NAME);
         menuId = intent.getIntExtra(DayListActivity.MENU_ID, -1);
@@ -93,33 +83,12 @@ public class MenuViewActivity extends AppCompatActivity {
                 }
             });
         } else {
-//            setupNoMenu();
             Toast.makeText(this, "Could not load menu :" + menuId, Toast.LENGTH_SHORT).show();
         }
 
-        dayTitle.setText(dayName);
+        dayTitle.setText("Menu for " + dayName);
         setClickListeners();
 
-    }
-
-//    private void setupNoMenu() {
-//        mainDishTitle.setText(MenuPlanner.NO_MAIN_DISH);
-//        sideDish1Title.setText(MenuPlanner.NO_SIDE_DISH);
-//        sideDish2Title.setText(MenuPlanner.NO_SIDE_DISH);
-//        sideDish3Title.setText(MenuPlanner.NO_SIDE_DISH);
-//
-//        mainDishDelete.setVisibility(View.INVISIBLE);
-//        sideDish1Delete.setVisibility(View.INVISIBLE);
-//        sideDish2Delete.setVisibility(View.INVISIBLE);
-//        sideDish3Delete.setVisibility(View.INVISIBLE);
-//    }
-
-    private void hideDeleteIcon(ImageView imageView) {
-        imageView.setVisibility(View.INVISIBLE);
-    }
-
-    private void showDeleteIcon(ImageView imageView) {
-        imageView.setVisibility(View.VISIBLE);
     }
 
     private void setEmptyDishText(TextView textview, boolean isMainDish) {
@@ -172,9 +141,7 @@ public class MenuViewActivity extends AppCompatActivity {
                 if (dish != null) {
                     mainDishTitle.setText(dish.getDishName());
                     mainDishId = dish.getDishId();
-//                    showDeleteIcon(mainDishDelete);
                 } else {
-//                    hideDeleteIcon(mainDishDelete);
                     setEmptyDishText(mainDishTitle, true);
                 }
             }
@@ -188,9 +155,7 @@ public class MenuViewActivity extends AppCompatActivity {
                 if (dish != null) {
                     sideDish1Title.setText(dish.getDishName());
                     sideDish1Id = dish.getDishId();
-//                    showDeleteIcon(sideDish1Delete);
                 } else {
-//                    hideDeleteIcon(sideDish1Delete);
                     setEmptyDishText(sideDish1Title, false);
                 }
             }
@@ -204,9 +169,7 @@ public class MenuViewActivity extends AppCompatActivity {
                 if (dish != null) {
                     sideDish2Title.setText(dish.getDishName());
                     sideDish2Id = dish.getDishId();
-//                    showDeleteIcon(sideDish2Delete);
                 } else {
-//                    hideDeleteIcon(sideDish2Delete);
                     setEmptyDishText(sideDish2Title, false);
                 }
             }
@@ -220,9 +183,7 @@ public class MenuViewActivity extends AppCompatActivity {
                 if (dish != null) {
                     sideDish3Title.setText(dish.getDishName());
                     sideDish3Id = dish.getDishId();
-//                    showDeleteIcon(sideDish3Delete);
                 } else {
-//                    hideDeleteIcon(sideDish3Delete);
                     setEmptyDishText(sideDish3Title, false);
                 }
             }

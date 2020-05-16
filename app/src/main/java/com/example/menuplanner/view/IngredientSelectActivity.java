@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.menuplanner.R;
@@ -35,6 +36,7 @@ public class IngredientSelectActivity extends AppCompatActivity {
     private IngredientViewModel viewModel;
     private MenuItem searchMenu;
     Button save;
+    TextView dishName;
     public static final String INGREDIENT_ID = "com.example.menuplanner.INGREDIENT_ID";
     public static final String INGREDIENT_NAME = "com.example.menuplanner.INGREDIENT_NAME";
     public static final int ADD_INGREDIENT_REQUEST = 1;
@@ -46,11 +48,11 @@ public class IngredientSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingredient_select);
-//        findViewById(R.id.edit_dish_checkbox).setVisibility(View.VISIBLE);
-//        findViewById(R.id.edit_dish_ingredients).setVisibility(View.INVISIBLE);
         save = findViewById(R.id.button_add_save_ingredients);
+        dishName = findViewById(R.id.add_save_ingredients_dish_name);
         Intent intent = getIntent();
         dishId = intent.getIntExtra(DishSelectActivity.DISH_ID, -1);
+        dishName.setText("Select Ingredients for " + intent.getStringExtra(DishSelectActivity.DISH_NAME));
         dishIngredientIds = intent.getIntegerArrayListExtra(DishSelectActivity.DISH_INGREDIENTS);
 
         FloatingActionButton buttonAddIngredient = findViewById(R.id.button_list_add_ingredient);
@@ -81,11 +83,6 @@ public class IngredientSelectActivity extends AppCompatActivity {
             public void onEditClicked(Ingredient ingredient) {
                 editIngredient(ingredient);
             }
-
-//            @Override
-//            public void onDeleteClicked(int position, Ingredient ingredient) {
-//                deleteIngredient(position, ingredient);
-//            }
         });
 
         viewModel = ViewModelProviders.of(this).get(IngredientViewModel.class);
@@ -105,8 +102,6 @@ public class IngredientSelectActivity extends AppCompatActivity {
 
     private void editIngredient(Ingredient ingredient) {
         Intent intent = new Intent(IngredientSelectActivity.this, IngredientAddEditActivity.class);
-//        Set<Ingredient> dishWithIngredients = viewModel.getDishIngredients(dish.getDishId());
-//        intent.putIntegerArrayListExtra(dish)
         intent.putExtra(INGREDIENT_ID, ingredient.getIngredientId());
         intent.putExtra(INGREDIENT_NAME, ingredient.getIngredientName());
         startActivityForResult(intent, EDIT_INGREDIENT_REQUEST);
@@ -148,12 +143,6 @@ public class IngredientSelectActivity extends AppCompatActivity {
         });
         return true;
     }
-
-//    private void deleteIngredient(int position, Ingredient ingredient) {
-//        adapter.setDeletedItemCheckbox(position);
-//        viewModel.delete(ingredient);
-//        viewModel.deleteAllDishIngredients(ingredient.getIngredientId());
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
