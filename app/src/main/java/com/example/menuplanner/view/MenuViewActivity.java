@@ -39,6 +39,7 @@ public class MenuViewActivity extends AppCompatActivity {
     private int sideDish3Id;
 
     public static final String REQUEST_TYPE = "com.example.menuplanner.REQUEST_TYPE";
+    public static final String DAY_NAME = "com.example.menuplanner.DAY_NAME";
     public static final int SELECT_MAIN_DISH_REQUEST = 1;
     public static final int SELECT_SIDE_DISH_1_REQUEST = 2;
     public static final int SELECT_SIDE_DISH_2_REQUEST = 3;
@@ -47,6 +48,7 @@ public class MenuViewActivity extends AppCompatActivity {
 
     MenuViewModel menuViewModel;
     private DishViewModel dishViewModel;
+    private String dayName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,7 @@ public class MenuViewActivity extends AppCompatActivity {
         sideDish3Card = findViewById(R.id.card_side_3);
 
         Intent intent = getIntent();
-        String dayName = intent.getStringExtra(DayListActivity.DAY_NAME);
+        dayName = intent.getStringExtra(DayListActivity.DAY_NAME);
         menuId = intent.getIntExtra(DayListActivity.MENU_ID, -1);
 
         menuViewModel = of(this).get(MenuViewModel.class);
@@ -105,6 +107,7 @@ public class MenuViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MenuViewActivity.this, DishSelectActivity.class);
                 intent.putExtra(REQUEST_TYPE, SELECT_MAIN_DISH_REQUEST);
+                intent.putExtra(DAY_NAME, dayName);
                 startActivityForResult(intent, SELECT_MAIN_DISH_REQUEST);
             }
         });
@@ -113,6 +116,7 @@ public class MenuViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MenuViewActivity.this, DishSelectActivity.class);
                 intent.putExtra(REQUEST_TYPE, SELECT_SIDE_DISH_1_REQUEST);
+                intent.putExtra(DAY_NAME, dayName);
                 startActivityForResult(intent, SELECT_SIDE_DISH_1_REQUEST);
             }
         });
@@ -121,6 +125,7 @@ public class MenuViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MenuViewActivity.this, DishSelectActivity.class);
                 intent.putExtra(REQUEST_TYPE, SELECT_SIDE_DISH_2_REQUEST);
+                intent.putExtra(DAY_NAME, dayName);
                 startActivityForResult(intent, SELECT_SIDE_DISH_2_REQUEST);
             }
         });
@@ -129,6 +134,7 @@ public class MenuViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MenuViewActivity.this, DishSelectActivity.class);
                 intent.putExtra(REQUEST_TYPE, SELECT_SIDE_DISH_3_REQUEST);
+                intent.putExtra(DAY_NAME, dayName);
                 startActivityForResult(intent, SELECT_SIDE_DISH_3_REQUEST);
             }
         });

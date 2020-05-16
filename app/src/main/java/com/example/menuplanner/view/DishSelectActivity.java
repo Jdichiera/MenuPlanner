@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.example.menuplanner.R;
 import com.example.menuplanner.adapter.DishSelectionAdapter;
@@ -41,6 +42,7 @@ public class DishSelectActivity extends AppCompatActivity {
     private DishViewModel viewModel;
     private MenuItem searchMenu;
     private Boolean isMainDishRequest;
+    private TextView selectDishHeaderText;
 
 
     @Override
@@ -57,6 +59,11 @@ public class DishSelectActivity extends AppCompatActivity {
             }
         });
 
+        String dayName = getIntent().getStringExtra(MenuViewActivity.DAY_NAME);
+
+        selectDishHeaderText = findViewById(R.id.add_save_dish_header_text);
+        String dishType = isMainDishRequest ? "main dish" : "side dish";
+        selectDishHeaderText.setText("Select a " + dishType + " for " + dayName);
         RecyclerView recyclerView = findViewById(R.id.dish_and_ingredient_select_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);

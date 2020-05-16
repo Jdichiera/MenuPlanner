@@ -6,14 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".view.DishSelectActivity">
 
+    <TextView
+        android:id="@+id/add_save_dish_header_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:gravity="center_horizontal"
+        android:text="Select a Dish for Monday"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dish_and_ingredient_select_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="25dp"
         android:padding="4dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/dish_and_ingredient_item"
-        android:layout_marginBottom="115dp"/>
+        android:layout_marginBottom="130dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_list_add_dish"
@@ -21,7 +30,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginRight="5dp"/>
 
     <TextView
@@ -31,7 +40,8 @@
         \nPress the list icon to view the dishes ingredients.
         \nPress the plus icon to add a new dish.
         \nPress the pencil icon to edit the dish name.
-        \nPress the trash icon to delete a dish."
+        \nPress the trash icon to delete a dish.
+        \nClick the search icon in the menu bar to search by name."
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="20dp"/>
 

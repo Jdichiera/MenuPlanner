@@ -214,7 +214,7 @@ public class LoginActivity extends AppCompatActivity {
         menuViewModel.insert(new com.example.menuplanner.entity.Menu(3, 14, 15, 16));
         menuViewModel.insert(new com.example.menuplanner.entity.Menu(4, 17, 18, 19));
         menuViewModel.insert(new com.example.menuplanner.entity.Menu(5, 20, 21, 22));
-        menuViewModel.insert(new com.example.menuplanner.entity.Menu(6, 23, 24, 25));
+        menuViewModel.insert(new com.example.menuplanner.entity.Menu(6, 11, 12, 13));
         menuViewModel.insert(new com.example.menuplanner.entity.Menu(0, 0, 0, 0));
     }
 
@@ -263,21 +263,21 @@ public class LoginActivity extends AppCompatActivity {
 //        dishViewModel.insert(new Dish("7-3", false));
 //        dishViewModel.insert(new Dish("7-3", false));
 
-        dishViewModel.insert(new Dish("Baked Beans", false));
-        dishViewModel.insert(new Dish("Rice Pilaf", false));
-        dishViewModel.insert(new Dish("Mixed Vegetables", false));
-        dishViewModel.insert(new Dish("Rolls and Butter", false));
-        dishViewModel.insert(new Dish("Coleslaw", false));
-        dishViewModel.insert(new Dish("BBQ Chips", false));
-        dishViewModel.insert(new Dish("Fries", false));
-        dishViewModel.insert(new Dish("Greens", false));
-        dishViewModel.insert(new Dish("Pasta Salad", false));
-        dishViewModel.insert(new Dish("Fruit", false));
-        dishViewModel.insert(new Dish("Potato Salad", false));
-        dishViewModel.insert(new Dish("Squash", false));
-        dishViewModel.insert(new Dish("Side Salad", false));
-        dishViewModel.insert(new Dish("Mashed Potatoes", false));
-        dishViewModel.insert(new Dish("Pickled Cabbage", false));
+        dishViewModel.insert(new Dish("Baked Beans", false));   // 7
+        dishViewModel.insert(new Dish("Rice Pilaf", false));   //8
+        dishViewModel.insert(new Dish("Mixed Vegetables", false));    // 9
+        dishViewModel.insert(new Dish("Rolls and Butter", false));   // 10
+        dishViewModel.insert(new Dish("Coleslaw", false));   // 11
+        dishViewModel.insert(new Dish("BBQ Chips", false));   // 12
+        dishViewModel.insert(new Dish("Fries", false));   // 13
+        dishViewModel.insert(new Dish("Greens", false));   // 14
+        dishViewModel.insert(new Dish("Pasta Salad", false));   // 15
+        dishViewModel.insert(new Dish("Fruit", false));   // 16
+        dishViewModel.insert(new Dish("Potato Salad", false));   // 17
+        dishViewModel.insert(new Dish("Squash", false));   // 18
+        dishViewModel.insert(new Dish("Side Salad", false));   // 19
+        dishViewModel.insert(new Dish("Mashed Potatoes", false));   // 20
+        dishViewModel.insert(new Dish("Pickled Cabbage", false));   // 21
     }
 
     private void addIngredientData() {
@@ -285,28 +285,42 @@ public class LoginActivity extends AppCompatActivity {
             ingredientViewModel = ViewModelProviders.of(this).get(IngredientViewModel.class);
         }
 
-        ingredientViewModel.insert(new Ingredient("Salt"));
-        ingredientViewModel.insert(new Ingredient("Butter"));
-        ingredientViewModel.insert(new Ingredient("Pepper"));
-        ingredientViewModel.insert(new Ingredient("Flour"));
-        ingredientViewModel.insert(new Ingredient("Spice"));
-        ingredientViewModel.insert(new Ingredient("Sugar"));
-        ingredientViewModel.insert(new Ingredient("Noodles"));
-        ingredientViewModel.insert(new Ingredient("Cinnamon"));
-        ingredientViewModel.insert(new Ingredient("Banana extract"));
-        ingredientViewModel.insert(new Ingredient("Vanilla extract"));
-        ingredientViewModel.insert(new Ingredient("Marinara Sauce"));
-        ingredientViewModel.insert(new Ingredient("Tuna Fish"));
-        ingredientViewModel.insert(new Ingredient("Bread"));
-        ingredientViewModel.insert(new Ingredient("Ham"));
-        ingredientViewModel.insert(new Ingredient("Potatoes"));
-        ingredientViewModel.insert(new Ingredient("Tomato Sauce"));
-        ingredientViewModel.insert(new Ingredient("Chili Powder"));
-        ingredientViewModel.insert(new Ingredient("Yams"));
-        ingredientViewModel.insert(new Ingredient("Spice 1"));
-        ingredientViewModel.insert(new Ingredient("Spice 2"));
-        ingredientViewModel.insert(new Ingredient("Cucumbers"));
-        ingredientViewModel.insert(new Ingredient("Salad Dressing"));
+        ingredientViewModel.insert(new Ingredient("Salt")); // 1
+        ingredientViewModel.insert(new Ingredient("Butter")); // 2
+        ingredientViewModel.insert(new Ingredient("Pepper")); // 3
+        ingredientViewModel.insert(new Ingredient("Flour")); // 4
+        ingredientViewModel.insert(new Ingredient("Spice")); // 5
+        ingredientViewModel.insert(new Ingredient("Sugar")); // 6
+        ingredientViewModel.insert(new Ingredient("Noodles")); //7
+        ingredientViewModel.insert(new Ingredient("Cinnamon")); // 8
+        ingredientViewModel.insert(new Ingredient("Banana extract")); // 9
+        ingredientViewModel.insert(new Ingredient("Vanilla extract")); // 10
+        ingredientViewModel.insert(new Ingredient("Marinara Sauce")); // 11
+        ingredientViewModel.insert(new Ingredient("Tuna Fish")); // 12
+        ingredientViewModel.insert(new Ingredient("Bread")); // 13
+        ingredientViewModel.insert(new Ingredient("Ham")); // 14
+        ingredientViewModel.insert(new Ingredient("Potatoes")); // 15
+        ingredientViewModel.insert(new Ingredient("Tomato Sauce")); // 16
+        ingredientViewModel.insert(new Ingredient("Chili Powder")); // 17
+        ingredientViewModel.insert(new Ingredient("Yams")); // 18
+        ingredientViewModel.insert(new Ingredient("Spice 1")); // 19
+        ingredientViewModel.insert(new Ingredient("Spice 2")); // 20
+        ingredientViewModel.insert(new Ingredient("Cucumbers")); // 21
+        ingredientViewModel.insert(new Ingredient("Salad Dressing")); // 22
+        ingredientViewModel.insert(new Ingredient("Lettuce")); // 23
+        ingredientViewModel.insert(new Ingredient("Rice")); // 24
+        ingredientViewModel.insert(new Ingredient("Brown Sugar")); // 25
+        ingredientViewModel.insert(new Ingredient("Beans")); // 26
+        ingredientViewModel.insert(new Ingredient("Mixed vegetables")); // 27
+        ingredientViewModel.insert(new Ingredient("Dinner Rolls")); // 28
+        ingredientViewModel.insert(new Ingredient("Cabbage")); // 29
+        ingredientViewModel.insert(new Ingredient("Mayonnaise")); // 30
+        ingredientViewModel.insert(new Ingredient("BBQ Chips")); // 31
+        ingredientViewModel.insert(new Ingredient("Greens")); // 32
+        ingredientViewModel.insert(new Ingredient("Oil")); // 33
+        ingredientViewModel.insert(new Ingredient("Fruit")); // 34
+        ingredientViewModel.insert(new Ingredient("Squash")); // 35
+        ingredientViewModel.insert(new Ingredient("Pickling Spice")); // 35
     }
 
     private void addDishIngredientJoinData() {
@@ -314,6 +328,78 @@ public class LoginActivity extends AppCompatActivity {
             dishViewModel = ViewModelProviders.of(this).get(DishViewModel.class);
         }
 
+        dishViewModel.insertDishIngredients(1, 3);
+        dishViewModel.insertDishIngredients(1, 11);
+        dishViewModel.insertDishIngredients(1, 7);
         dishViewModel.insertDishIngredients(1, 1);
+        dishViewModel.insertDishIngredients(2, 13);
+        dishViewModel.insertDishIngredients(2, 2);
+        dishViewModel.insertDishIngredients(2, 12);
+        dishViewModel.insertDishIngredients(2, 1);
+        dishViewModel.insertDishIngredients(2, 3);
+        dishViewModel.insertDishIngredients(3, 15);
+        dishViewModel.insertDishIngredients(3, 2);
+        dishViewModel.insertDishIngredients(3, 1);
+        dishViewModel.insertDishIngredients(3, 3);
+        dishViewModel.insertDishIngredients(3, 4);
+        dishViewModel.insertDishIngredients(3, 14);
+        dishViewModel.insertDishIngredients(4, 1);
+        dishViewModel.insertDishIngredients(4, 3);
+        dishViewModel.insertDishIngredients(4, 4);
+        dishViewModel.insertDishIngredients(4, 5);
+        dishViewModel.insertDishIngredients(4, 16);
+        dishViewModel.insertDishIngredients(4, 17);
+        dishViewModel.insertDishIngredients(5, 1);
+        dishViewModel.insertDishIngredients(5, 2);
+        dishViewModel.insertDishIngredients(5, 3);
+        dishViewModel.insertDishIngredients(5, 5);
+        dishViewModel.insertDishIngredients(5, 18);
+        dishViewModel.insertDishIngredients(5, 19);
+        dishViewModel.insertDishIngredients(5, 20);
+        dishViewModel.insertDishIngredients(6, 21);
+        dishViewModel.insertDishIngredients(6, 22);
+        dishViewModel.insertDishIngredients(6, 23);
+        dishViewModel.insertDishIngredients(7, 1);
+        dishViewModel.insertDishIngredients(7, 26);
+        dishViewModel.insertDishIngredients(8, 1);
+        dishViewModel.insertDishIngredients(8, 2);
+        dishViewModel.insertDishIngredients(8, 3);
+        dishViewModel.insertDishIngredients(8, 24);
+        dishViewModel.insertDishIngredients(9, 25);
+        dishViewModel.insertDishIngredients(10, 2);
+        dishViewModel.insertDishIngredients(10, 28);
+        dishViewModel.insertDishIngredients(11, 1);
+        dishViewModel.insertDishIngredients(11, 2);
+        dishViewModel.insertDishIngredients(11, 2);
+        dishViewModel.insertDishIngredients(11, 29);
+        dishViewModel.insertDishIngredients(11, 30);
+        dishViewModel.insertDishIngredients(12, 30);
+        dishViewModel.insertDishIngredients(13, 1);
+        dishViewModel.insertDishIngredients(13, 15);
+        dishViewModel.insertDishIngredients(14, 32);
+        dishViewModel.insertDishIngredients(14, 1);
+        dishViewModel.insertDishIngredients(14, 2);
+        dishViewModel.insertDishIngredients(14, 3);
+        dishViewModel.insertDishIngredients(15, 1);
+        dishViewModel.insertDishIngredients(15, 2);
+        dishViewModel.insertDishIngredients(15, 3);
+        dishViewModel.insertDishIngredients(15, 33);
+        dishViewModel.insertDishIngredients(15, 7);
+        dishViewModel.insertDishIngredients(16, 34);
+        dishViewModel.insertDishIngredients(17, 1);
+        dishViewModel.insertDishIngredients(17, 3);
+        dishViewModel.insertDishIngredients(17, 15);
+        dishViewModel.insertDishIngredients(17, 30);
+        dishViewModel.insertDishIngredients(18, 35);
+        dishViewModel.insertDishIngredients(19, 23);
+        dishViewModel.insertDishIngredients(19, 21);
+        dishViewModel.insertDishIngredients(19, 22);
+        dishViewModel.insertDishIngredients(20, 1);
+        dishViewModel.insertDishIngredients(20, 2);
+        dishViewModel.insertDishIngredients(20, 3);
+        dishViewModel.insertDishIngredients(20, 15);
+        dishViewModel.insertDishIngredients(21, 35);
+        dishViewModel.insertDishIngredients(21, 29);
+
     }
 }

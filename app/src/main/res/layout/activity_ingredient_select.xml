@@ -52,8 +52,8 @@
         \nUncheck the checkbox to deselect the ingredient.
         \nPress the plus icon to add a new ingredient.
         \nPress the pencil icon to edit the ingredient name.
-        \nPress the trash icon to delete an ingredient."
+        \nClick the search icon in the menu bar to search by name."
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="10dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
