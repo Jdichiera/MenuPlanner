@@ -27,6 +27,9 @@ public interface MenuDao {
     void deleteAllMenus();
 
     @Query("SELECT * FROM " + MenuPlanner.MENUS_TABLE + " WHERE menuId = :menuId")
+    Menu getSingleMenu(int menuId);
+
+    @Query("SELECT * FROM " + MenuPlanner.MENUS_TABLE + " WHERE menuId = :menuId")
     LiveData<Menu> getMenu(int menuId);
 
     @Query("SELECT * FROM " + MenuPlanner.MENUS_TABLE)

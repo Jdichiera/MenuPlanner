@@ -69,9 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 initializeDatabase();
                 return true;
-            case R.id.menu_view_reports:
-                viewReports();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -94,10 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                     "Please check your credentials and try logging in again.",
                     Toast.LENGTH_SHORT).show();
         }
-    }
-    
-    private void viewReports() {
-        Toast.makeText(this, "View Reports", Toast.LENGTH_SHORT).show();
     }
 
     private void initializeDatabase() {

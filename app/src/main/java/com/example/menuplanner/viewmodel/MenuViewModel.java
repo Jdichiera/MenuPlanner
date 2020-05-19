@@ -36,12 +36,21 @@ public class MenuViewModel extends AndroidViewModel {
 
     public void deleteAllMenus() { repository.deleteAllMenus();}
 
+    public Menu getSingleMenu(int menuId) {
+        return repository.getSingleMenu(menuId);
+    }
+
     public LiveData<Menu> getMenu() {
         return repository.getMenu();
     }
 
-    public LiveData<Menu> getMenu(int menuId) {
-        return repository.getMenu(menuId);
+    public LiveData<Menu> getMenu(int menuId) throws Exception{
+        LiveData<Menu> dayMenu = repository.getMenu(menuId);
+        if (repository.getSingleMenu(menuId) == null) {
+            throw new Exception();
+        } else {
+            return dayMenu;
+        }
     }
 
     public LiveData<List<Menu>> getAllMenus() {

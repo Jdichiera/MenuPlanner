@@ -70,7 +70,21 @@
                 android:layout_height="wrap_content"
                 android:text="login" />
 
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Initialize Database from the ActionBar menu to install test data.
+        \n\nAfter installing test data, use the following evaluation credentials to log in:
+        \n   Username:   testUser
+        \n   Password:   testPassword"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"/>
 </RelativeLayout>

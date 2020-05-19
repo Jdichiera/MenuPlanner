@@ -13,8 +13,8 @@ public class MenuPlanner extends Application {
     public static final String DISH_TABLE = "dish_table";
     public static final String INGREDIENTS_TABLE = "ingredients_table";
     public static final String DISH_INGREDIENT_JOIN = "dish_ingredients_join_table";
-    public static final String TEST_USER_NAME = "1";
-    public static final String TEST_USER_PASSWORD = "1";
+    public static final String TEST_USER_NAME = "testUser";
+    public static final String TEST_USER_PASSWORD = "testPassword";
     public static final String[] DAYS = {
             "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     };

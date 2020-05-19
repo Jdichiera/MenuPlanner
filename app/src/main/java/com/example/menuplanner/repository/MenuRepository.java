@@ -42,6 +42,10 @@ public class MenuRepository {
         return menu;
     }
 
+    public Menu getSingleMenu(int menuId) {
+        return menuDao.getSingleMenu(menuId);
+    }
+
     public LiveData<List<Menu>> getAllMenus() {
         return menuDao.getAllMenus();
     }

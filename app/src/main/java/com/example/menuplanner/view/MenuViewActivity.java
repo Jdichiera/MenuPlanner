@@ -3,7 +3,9 @@ package com.example.menuplanner.view;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -75,15 +77,32 @@ public class MenuViewActivity extends AppCompatActivity {
         dishViewModel = of(this).get(DishViewModel.class);
 
         if (menuId > 0) {
-            menuViewModel.getMenu(menuId).observe(lifeCycleOwner, new Observer<Menu>() {
-                @Override
-                public void onChanged(Menu menu) {
-                    observeMainDish(menu, lifeCycleOwner);
-                    observeSideDish1(menu, lifeCycleOwner);
-                    observeSideDish2(menu, lifeCycleOwner);
-                    observeSideDish3(menu, lifeCycleOwner);
-                }
-            });
+            try {
+                menuViewModel.getMenu(menuId).observe(lifeCycleOwner, new Observer<Menu>() {
+                    @Override
+                    public void onChanged(Menu menu) {
+
+                            observeMainDish(menu, lifeCycleOwner);
+
+
+                            observeSideDish1(menu, lifeCycleOwner);
+
+
+                            observeSideDish2(menu, lifeCycleOwner);
+
+                            observeSideDish3(menu, lifeCycleOwner);
+
+                    }
+                });
+            } catch (Exception e) {
+                Toast.makeText(this, "Menu does not exist - creating a blank menu for " + dayName, Toast.LENGTH_SHORT).show();
+                Menu menu = new Menu(0, 0, 0, 0);
+                menu.setMenuId(menuId);
+                menuViewModel.insert(menu);
+                Intent restartIntent = getIntent();
+                finish();
+                startActivity(restartIntent);
+            }
         } else {
             Toast.makeText(this, "Could not load menu :" + menuId, Toast.LENGTH_SHORT).show();
         }
@@ -154,7 +173,7 @@ public class MenuViewActivity extends AppCompatActivity {
         });
     }
 
-    private void observeSideDish1(Menu menu, LifecycleOwner lifecycleOwner) {
+    private void observeSideDish1(Menu menu, LifecycleOwner lifecycleOwner)  {
         dishViewModel.getDish(menu.getSideDish1Id()).observe(lifecycleOwner, new Observer<Dish>() {
             @Override
             public void onChanged(Dish dish) {
